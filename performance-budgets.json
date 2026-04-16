@@ -1,0 +1,51 @@
+{
+  "webVitalsTargets": {
+    "mobileLcpMs": 2800,
+    "cls": 0.1,
+    "inpMs": 200,
+    "performanceScore": 85,
+    "accessibilityScore": 95
+  },
+  "chunkBudgets": {
+    "maxLargestChunkKB": 900,
+    "maxSecondLargestChunkKB": 260,
+    "maxTotalStaticChunksKB": 1800
+  },
+  "routeBudgets": {
+    "/": {
+      "maxFirstLoadUncompressedJsKB": 560
+    },
+    "/projects": {
+      "maxFirstLoadUncompressedJsKB": 560
+    },
+    "/projects/[slug]": {
+      "maxFirstLoadUncompressedJsKB": 560
+    },
+    "/journey": {
+      "maxFirstLoadUncompressedJsKB": 560
+    },
+    "/contact": {
+      "maxFirstLoadUncompressedJsKB": 560
+    },
+    "/resume": {
+      "maxFirstLoadUncompressedJsKB": 560
+    },
+    "/lab": {
+      "maxFirstLoadUncompressedJsKB": 580
+    }
+  },
+  "routes": {
+    "/": {
+      "interactionGoal": "Hero CTA usable within 2 taps"
+    },
+    "/projects": {
+      "interactionGoal": "Filter response under 100ms"
+    },
+    "/lab": {
+      "interactionGoal": "No forced 3D load before explicit user intent"
+    },
+    "/resume": {
+      "interactionGoal": "Preview deferred until user action"
+    }
+  }
+}

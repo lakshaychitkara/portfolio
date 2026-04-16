@@ -1,36 +1,89 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Web App (Next.js)
 
-## Getting Started
+High-impact portfolio frontend built with Next.js App Router, Tailwind CSS, Framer Motion, and React Three Fiber.
 
-First, run the development server:
+## Implemented Routes
+- `/` About + narrative homepage
+- `/journey` Interactive growth timeline
+- `/projects` Filterable project explorer
+- `/projects/[slug]` Case study details
+- `/lab` 3D + LLM + CV interactive demos
+- `/resume` Resume panel + PDF preview
+- `/contact` Contact form and profile links
 
+## API Routes
+- `POST /api/contact`
+- `POST /api/lab/rag`
+- `POST /api/lab/cv`
+- `POST /api/lab/benchmark`
+
+## Development
 ```bash
+npm install
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Mobile/LAN dev server:
+```bash
+npm run dev:lan
+```
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Environment
+Create `.env.local` as needed:
+```bash
+NEXT_PUBLIC_SITE_URL=https://your-domain.com
+NEXT_PUBLIC_API_MODE=same-origin
+NEXT_PUBLIC_API_BASE_URL=
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+Copy defaults quickly:
+```bash
+cp .env.example .env.local
+```
 
-## Learn More
+- `NEXT_PUBLIC_API_MODE=same-origin` (recommended) uses Next.js `/api/*` and works best for mobile/LAN.
+- `NEXT_PUBLIC_API_MODE=direct` uses `NEXT_PUBLIC_API_BASE_URL` for direct FastAPI calls.
+- `NEXT_PUBLIC_API_MODE=auto` uses direct base URL when reachable and falls back to same-origin when localhost is invalid on mobile.
+- Leave `NEXT_PUBLIC_API_BASE_URL` empty unless you explicitly want direct mode.
 
-To learn more about Next.js, take a look at the following resources:
+Local Wi-Fi direct FastAPI example:
+```bash
+NEXT_PUBLIC_API_MODE=direct
+NEXT_PUBLIC_API_BASE_URL=http://192.168.1.24:8000
+```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Validation
+```bash
+npm run lint
+npm run typecheck
+npm run test
+npm run build
+npm run perf:baseline
+npm run perf:budget
+npm run test:mobile
+```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## UI Quality Checks
+```bash
+npm run test:keyboard-smoke
+npm run test:a11y
+npm run test:mobile
+npm run test:about
+npm run test:visual
+npm run test:lighthouse
+```
 
-## Deploy on Vercel
+## Customize
+Update your profile and project content in:
+- `src/lib/content/profile.ts`
+- `src/lib/content/projects.ts`
+- `src/lib/content/journey.ts`
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+Replace resume file:
+- `public/resume.pdf`
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## Docs
+- `docs/performance-budget-sheet.md`
+- `docs/ui-optimization-playbook.md`
+- `docs/mobile-qa-matrix.md`
+- `docs/mobile-qa-baseline.md`
