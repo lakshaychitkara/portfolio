@@ -1,6 +1,6 @@
 # Web App (Next.js)
 
-High-impact portfolio frontend built with Next.js App Router, Tailwind CSS, Framer Motion, and React Three Fiber.
+High-impact portfolio frontend built with Next.js App Router, Tailwind CSS, and React Three Fiber.
 
 ## Implemented Routes
 - `/` About + narrative homepage
