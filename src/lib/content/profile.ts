@@ -9,9 +9,9 @@ export const profile = {
   github: "https://github.com/lakshay536",
   linkedin: "https://www.linkedin.com/in/lakshay-chittosiya-a36008254/",
   headline:
-    "I build production-grade AI systems across LLM inference, multimodal retrieval, and simulation-heavy C++ pipelines while keeping full-stack delivery speed.",
+    "I build evidence-backed AI systems across LLM inference, multimodal retrieval, OCR, and simulation-heavy C++ pipelines while keeping full-stack delivery speed.",
   shortBio:
-    "I began with strong full-stack fundamentals and rapidly expanded into RAG, quantization, vLLM optimization, video benchmark pipelines, and biomechanical 3D repositioning engineering.",
+    "I began with strong full-stack fundamentals and expanded into vLLM optimization, multimodal benchmark pipelines, STORMS document assistants, and biomechanical 3D repositioning engineering.",
 };
 
 export const privacyFlags: PrivacyConfig = {

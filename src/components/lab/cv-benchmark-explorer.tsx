@@ -1,6 +1,7 @@
 "use client";
 
 import { FormEvent, useState } from "react";
+import { Play } from "lucide-react";
 import { buildApiUrl, getApiTargetDiagnostics } from "@/lib/api";
 import { fetchJson } from "@/lib/http";
 import { captureClientError } from "@/lib/telemetry";
@@ -55,14 +56,14 @@ export function CvBenchmarkExplorer() {
   }
 
   return (
-    <div className="rounded-2xl border border-white/10 bg-slate-900/80 p-5">
+    <div className="rounded-lg border border-white/10 bg-slate-900/80 p-5">
       <form onSubmit={handleSubmit} className="grid gap-3 md:grid-cols-[1fr_1fr_auto] md:items-end">
         <label className="space-y-2">
           <span className="text-sm font-medium text-slate-200">Clip</span>
           <select
             value={clip}
             onChange={(event) => setClip(event.target.value)}
-            className="min-h-[44px] w-full rounded-xl border border-white/15 bg-slate-950/70 px-3 py-2 text-sm text-slate-100"
+            className="min-h-[44px] w-full rounded-lg border border-white/15 bg-slate-950/70 px-3 py-2 text-sm text-slate-100"
           >
             {clipOptions.map((option) => (
               <option key={option} value={option}>
@@ -79,7 +80,7 @@ export function CvBenchmarkExplorer() {
             onChange={(event) =>
               setModelFamily(event.target.value as "baseline" | "multimodal")
             }
-            className="min-h-[44px] w-full rounded-xl border border-white/15 bg-slate-950/70 px-3 py-2 text-sm text-slate-100"
+            className="min-h-[44px] w-full rounded-lg border border-white/15 bg-slate-950/70 px-3 py-2 text-sm text-slate-100"
           >
             <option value="baseline">Baseline CV stack</option>
             <option value="multimodal">Multimodal stack</option>
@@ -89,8 +90,9 @@ export function CvBenchmarkExplorer() {
         <button
           type="submit"
           disabled={loading}
-          className="inline-flex min-h-[44px] items-center rounded-full bg-cyan-400 px-5 py-2 text-sm font-semibold text-slate-950 transition hover:bg-cyan-300 disabled:cursor-not-allowed disabled:opacity-60"
+          className="inline-flex min-h-[44px] items-center gap-2 rounded-lg bg-amber-300 px-5 py-2 text-sm font-semibold text-slate-950 transition hover:bg-amber-200 disabled:cursor-not-allowed disabled:opacity-60"
         >
+          <Play size={15} aria-hidden />
           {loading ? "Running..." : "Compare"}
         </button>
       </form>
@@ -104,10 +106,10 @@ export function CvBenchmarkExplorer() {
       {result ? (
         <div className="mt-6 space-y-3">
           {result.captions.map((item) => (
-            <div key={item.model} className="rounded-xl border border-white/10 bg-slate-950/65 p-4">
+            <div key={item.model} className="rounded-lg border border-white/10 bg-slate-950/65 p-4">
               <div className="flex flex-wrap items-center justify-between gap-2">
                 <p className="text-sm font-semibold text-slate-100">{item.model}</p>
-                <p className="font-mono text-xs uppercase tracking-[0.12em] text-slate-400">
+                <p className="font-mono text-xs uppercase text-slate-400">
                   Recall {(item.recall * 100).toFixed(0)}% | Precision {(item.precision * 100).toFixed(0)}%
                 </p>
               </div>

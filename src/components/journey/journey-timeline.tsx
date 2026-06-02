@@ -10,7 +10,7 @@ interface JourneyTimelineProps {
 }
 
 export function JourneyTimeline({ entries }: JourneyTimelineProps) {
-  const [selectedId, setSelectedId] = useState(entries[0]?.id ?? "");
+  const [selectedId, setSelectedId] = useState(entries.at(-1)?.id ?? "");
 
   const selectedEntry = useMemo(
     () => entries.find((entry) => entry.id === selectedId) ?? entries[0],
@@ -69,7 +69,7 @@ export function JourneyTimeline({ entries }: JourneyTimelineProps) {
       <div className="card-surface-muted p-3 lg:hidden">
         <label
           htmlFor="journey-phase-select"
-          className="font-mono text-xs uppercase tracking-[0.14em] text-cyan-200"
+          className="font-mono text-xs uppercase text-amber-200"
         >
           Choose Career Phase
         </label>
@@ -104,13 +104,13 @@ export function JourneyTimeline({ entries }: JourneyTimelineProps) {
                 onClick={() => setSelectedId(entry.id)}
                 onKeyDown={(event) => handleTabKeyDown(event, index)}
                 className={cn(
-                  "min-h-[44px] w-full rounded-xl border px-4 py-3 text-left transition focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-300/80",
+                  "min-h-[44px] w-full rounded-lg border px-4 py-3 text-left transition focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber-300/80",
                   isSelected
-                    ? "border-cyan-300/60 bg-cyan-500/15"
-                    : "border-white/10 bg-slate-900/70 hover:border-cyan-300/40",
+                    ? "border-amber-300/60 bg-amber-300/15"
+                    : "border-white/10 bg-slate-900/70 hover:border-amber-300/40",
                 )}
               >
-                <p className="font-mono text-xs uppercase tracking-[0.14em] text-cyan-200">
+                <p className="font-mono text-xs uppercase text-amber-200">
                   {entry.phase}
                 </p>
                 <p className="mt-1 text-sm text-slate-400">{entry.period}</p>
@@ -123,12 +123,12 @@ export function JourneyTimeline({ entries }: JourneyTimelineProps) {
 
         {selectedEntry ? (
           <div
-            className="card-surface p-5 md:p-6"
+              className="card-surface p-5 md:p-6"
             id={`journey-panel-${selectedEntry.id}`}
             role="tabpanel"
             aria-labelledby={`journey-tab-${selectedEntry.id}`}
           >
-            <p className="font-mono text-xs uppercase tracking-[0.18em] text-cyan-300">
+            <p className="font-mono text-xs uppercase text-amber-200">
               {selectedEntry.period}
             </p>
             <h3 className="mt-2 text-2xl font-semibold text-slate-100">
@@ -137,7 +137,7 @@ export function JourneyTimeline({ entries }: JourneyTimelineProps) {
             <p className="mt-3 text-slate-300">{selectedEntry.summary}</p>
 
             <div className="mt-5 card-surface-muted p-4">
-              <p className="font-mono text-xs uppercase tracking-[0.12em] text-slate-400">
+              <p className="font-mono text-xs uppercase text-slate-400">
                 Major Outcomes
               </p>
               <ul className="mt-2 space-y-2 text-sm text-slate-200">
@@ -155,10 +155,10 @@ export function JourneyTimeline({ entries }: JourneyTimelineProps) {
                   key={`${selectedEntry.id}-${metric.label}`}
                   className="card-surface-muted p-3"
                 >
-                  <p className="font-mono text-[11px] uppercase tracking-[0.1em] text-slate-400">
+                  <p className="font-mono text-[11px] uppercase text-slate-400">
                     {metric.label}
                   </p>
-                  <p className="mt-1 text-lg font-semibold text-cyan-200">{metric.value}</p>
+                  <p className="mt-1 text-lg font-semibold text-amber-100">{metric.value}</p>
                   <p className="mt-1 text-xs text-slate-400">{metric.context}</p>
                 </div>
               ))}

@@ -108,7 +108,7 @@ export function ContactForm() {
   }
 
   return (
-    <form onSubmit={handleSubmit} className="space-y-4 rounded-2xl border border-white/10 bg-slate-900/80 p-5">
+    <form onSubmit={handleSubmit} className="space-y-4 rounded-lg border border-white/10 bg-slate-900/80 p-5">
       <label htmlFor={nameId} className="block space-y-2">
         <span className="text-sm font-medium text-slate-100">Name</span>
         <input
@@ -126,7 +126,7 @@ export function ContactForm() {
           }
           aria-invalid={fieldErrors.name ? "true" : "false"}
           aria-describedby={fieldErrors.name ? nameErrorId : undefined}
-          className="min-h-[44px] w-full rounded-xl border border-white/15 bg-slate-950/70 px-3 py-2 text-sm text-slate-100"
+          className="min-h-[44px] w-full rounded-lg border border-white/15 bg-slate-950/70 px-3 py-2 text-sm text-slate-100"
           placeholder="Your name"
         />
         {fieldErrors.name ? (
@@ -153,7 +153,7 @@ export function ContactForm() {
           }
           aria-invalid={fieldErrors.email ? "true" : "false"}
           aria-describedby={fieldErrors.email ? emailErrorId : undefined}
-          className="min-h-[44px] w-full rounded-xl border border-white/15 bg-slate-950/70 px-3 py-2 text-sm text-slate-100"
+          className="min-h-[44px] w-full rounded-lg border border-white/15 bg-slate-950/70 px-3 py-2 text-sm text-slate-100"
           placeholder="you@example.com"
         />
         {fieldErrors.email ? (
@@ -179,7 +179,7 @@ export function ContactForm() {
               message: event.target.value,
             }))
           }
-          className="min-h-32 w-full rounded-xl border border-white/15 bg-slate-950/70 px-3 py-2 text-sm text-slate-100"
+          className="min-h-32 w-full rounded-lg border border-white/15 bg-slate-950/70 px-3 py-2 text-sm text-slate-100"
           placeholder="Tell me about the role, project scope, or collaboration idea"
         />
         {fieldErrors.message ? (
@@ -192,7 +192,7 @@ export function ContactForm() {
       <button
         type="submit"
         disabled={loading}
-        className="inline-flex min-h-[44px] items-center rounded-full bg-cyan-400 px-5 py-2 text-sm font-semibold text-slate-950 transition hover:bg-cyan-300 disabled:cursor-not-allowed disabled:opacity-60"
+        className="inline-flex min-h-[44px] items-center rounded-lg bg-amber-300 px-5 py-2 text-sm font-semibold text-slate-950 transition hover:bg-amber-200 disabled:cursor-not-allowed disabled:opacity-60"
       >
         {loading ? "Sending..." : "Send Message"}
       </button>

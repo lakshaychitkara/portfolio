@@ -7,7 +7,7 @@ import { canonicalFor } from "@/lib/seo";
 export const metadata: Metadata = {
   title: "Projects",
   description:
-    "Filterable portfolio of LLM systems, computer vision benchmarks, C++/3D simulation contributions, and full-stack architecture work.",
+    "Searchable portfolio of LLM systems, multimodal/OCR benchmarks, C++/3D simulation contributions, and full-stack architecture work.",
   alternates: {
     canonical: canonicalFor("/projects"),
   },
@@ -20,8 +20,8 @@ export default function ProjectsPage() {
       <SectionBlock
         id="projects-explorer"
         eyebrow="Case Studies"
-        title="Project and Capability Explorer"
-        description="Filter by domain and scan impact summaries, proof badges, and architecture tradeoffs."
+        title="Project Evidence Explorer"
+        description="Search, filter, and sort by domain, metrics, stack, and outcome evidence."
       >
         <ProjectsExplorer projects={projects} />
       </SectionBlock>

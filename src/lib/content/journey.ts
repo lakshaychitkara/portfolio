@@ -125,21 +125,21 @@ export const careerPhases: CareerPhase[] = [
   {
     id: "phase-04",
     phase: "Phase 4",
-    period: "Jan 2026 - Feb 2026",
+    period: "Jan 2026 - Apr 2026",
     title: "Piper C++/VTK/QML Repositioning Engineering",
     focus: "Biomechanical correctness, contour stability, and build/tooling reliability.",
     summary:
-      "Implemented and tested dynamic FE-axis strategies, metadata corrections, contour parallelization updates, and Linux build improvements in a simulation-heavy codebase.",
-    tools: ["C++", "VTK", "Qt/QML", "CMake", "LS-DYNA", "CGAL"],
+      "Implemented dynamic FE-axis strategies, metadata corrections, contour-region updates, negative-element diagnostics, Linux build improvements, and whole-body repositioning workflow fixes.",
+    tools: ["C++", "VTK", "Qt/QML", "CMake", "LS-DYNA", "CGAL", "SWIG"],
     outcomes: [
-      "Fixed child-model axis mismatch and improved knee rotation behavior.",
-      "Removed contour tearing in key scenarios and improved high-flexion stability.",
-      "Added robust script tooling for configure/generate on Linux with path validation.",
+      "Fixed child-model axis mismatch and improved knee, lumbar, thorax, hip, and shoulder repositioning behavior.",
+      "Resolved duplicate-node mesh tearing, VTK cutter contour intersections, and high-flexion region definition issues.",
+      "Added robust script tooling, negative-volume visualization, and reusable contour parallelization structure.",
     ],
     projectImpact: [
-      { label: "Flexion Stability", value: "45deg", context: "Left knee contour intersections cleared up to 45 degrees." },
+      { label: "Flexion Stability", value: "70deg", context: "THUMS/IDM knee flexion stability extended through metadata and timestep changes." },
       { label: "IDM Quality", value: "0 negatives", context: "Negative elements reduced to zero in corrected run." },
-      { label: "Pipeline Sync", value: "2 knees", context: "Left and right knee repositioning pipelines unified." },
+      { label: "GHBMC Quality", value: "~6000 to 2", context: "Negative element count reduced after detection and scaling corrections." },
     ],
   },
   {
@@ -149,19 +149,20 @@ export const careerPhases: CareerPhase[] = [
     title: "Multimodal Benchmarking + Video Retrieval",
     focus: "Model comparison at scale with retrieval metrics and index-level trade-off analysis.",
     summary:
-      "Benchmarked video-language models across public and custom datasets, then validated retrieval trade-offs with large embedding-index experiments.",
+      "Benchmarked video-language, captioning, OCR, and embedding-index models across public, CCTV, scanned-document, and Kaggle vehicle datasets.",
     tools: [
       "InternVideo2",
       "LanguageBind",
       "X-CLIP",
       "Gemini Embedding 2",
+      "PaddleOCR-VL",
       "FAISS",
       "PyTorch",
     ],
     outcomes: [
       "Benchmarked multiple model families for recall and caption quality.",
       "Annotated CCTV dataset and compared confidence and retrieval behavior.",
-      "Built scripts for embedding generation and dynamic retrieval evaluation.",
+      "Built scripts for embedding generation, dynamic retrieval evaluation, OCR comparisons, and cost-feasibility review.",
     ],
     projectImpact: [
       { label: "Video-Caption Eval", value: "1,000 pairs", context: "Primary benchmark set created for model recall testing." },
@@ -172,21 +173,41 @@ export const careerPhases: CareerPhase[] = [
   {
     id: "phase-06",
     phase: "Phase 6",
-    period: "Mar 2026 - Apr 2026",
-    title: "OCR + Social Listening PoC + Infra Tooling",
+    period: "Mar 2026",
+    title: "OCR + Social Listening PoC",
     focus: "Applied productization across multimodal extraction and cross-platform signal workflows.",
     summary:
-      "Explored OCR stacks for scanned documents, integrated retrieval alternatives, and shipped a social listening proof-of-concept with API data ingestion and measurable latency reporting.",
-    tools: ["PaddleOCR", "Tesseract", "DeepSeek OCR", "Instagram API", "YouTube API", "React"],
+      "Explored OCR stacks for scanned documents, integrated retrieval alternatives, validated InternVL color detection, and shipped a social listening proof-of-concept with API data ingestion and measurable latency reporting.",
+    tools: ["PaddleOCR", "Tesseract", "DeepSeek OCR", "InternVL2.5", "Instagram API", "YouTube API", "React"],
     outcomes: [
       "Compared OCR options and advanced production-fit model selection.",
       "Delivered social listening PoC with iterative review integration.",
-      "Documented and stabilized shell-based build/run workflows for reproducibility.",
+      "Validated API ingestion, UI improvements, latency reporting, and branch cleanup before handoff.",
     ],
     projectImpact: [
       { label: "API Integrations", value: "2 platforms", context: "Instagram and YouTube ingestion integrated into PoC flow." },
       { label: "PoC Delivery", value: "1 end-to-end", context: "Built, reviewed, cleaned, and finalized branch delivery." },
-      { label: "Infra Scripts", value: "3 hardened", context: "Configure/generate/run scripts made path-agnostic and validated." },
+      { label: "OCR Tracks", value: "4 stacks", context: "Tesseract, DeepSeek-OCR, GLM-OCR, and PaddleOCR paths explored." },
+    ],
+  },
+  {
+    id: "phase-07",
+    phase: "Phase 7",
+    period: "Apr 2026 - Jun 2026",
+    title: "Whole-Body Repositioning + STORMS Productization",
+    focus: "Advanced Piper geometry delivery paired with document-assistant service and research automation work.",
+    summary:
+      "Extended Piper repositioning into whole-body workflows, added diagnostics and documentation automation, and built STORMS service paths for summarization, multilingual support, chatbot context, and CPU audio stability.",
+    tools: ["C++", "VTK", "QML", "FastAPI", "Qwen", "Gemma", "Indic2 200M", "Python automation"],
+    outcomes: [
+      "Integrated whole-body UI controls, negative-element visualization, and headless FE-HBM documentation automation.",
+      "Resolved lumbar, thorax, shoulder, and knee workflow blockers while preparing paper images and white-paper chapters.",
+      "Built STORMS summarization, parsing, multilingual, audio, and context-summarization paths with performance profiling.",
+    ],
+    projectImpact: [
+      { label: "Knee Flexion", value: "70deg", context: "Stable flexion extended through metadata and timestep updates." },
+      { label: "Docs Automation", value: "C++/Python", context: "Headless evidence and paper-image generation workflow built." },
+      { label: "STORMS Stability", value: "OOM fixed", context: "CPU audio out-of-memory errors resolved during pipeline profiling." },
     ],
   },
 ];

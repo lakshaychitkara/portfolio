@@ -40,7 +40,7 @@ const CvBenchmarkExplorer = dynamic(
 export const metadata: Metadata = {
   title: "Lab",
   description:
-    "Interactive AI and 3D demos demonstrating system design depth, performance tuning, and multimodal evaluation workflows.",
+    "Interactive AI and 3D demos demonstrating LLM serving behavior, performance tuning, multimodal evaluation, and biomechanics simulation workflows.",
   alternates: {
     canonical: canonicalFor("/lab"),
   },
@@ -49,21 +49,20 @@ export const metadata: Metadata = {
 export default function LabPage() {
   return (
     <div className="space-y-10">
-      <header className="card-surface p-6 md:p-7">
-        <p className="font-mono text-xs uppercase tracking-[0.18em] text-cyan-300">Lab</p>
+      <header className="border-b border-white/10 pb-7">
+        <p className="font-mono text-xs uppercase text-amber-200">Lab</p>
         <h1 className="mt-2 text-3xl font-semibold text-slate-100 md:text-4xl">
           Interactive AI Systems Lab
         </h1>
         <p className="mt-3 max-w-3xl text-sm leading-relaxed text-slate-300 md:text-base">
-          Experiment with retrieval quality, latency behavior, and multimodal workflows through
-          lightweight demos designed for architecture conversations.
+          Inspect retrieval quality, serving latency, multimodal benchmark behavior, and a web-native proxy for the Piper biomechanics workflow.
         </p>
       </header>
 
       <SectionBlock
         eyebrow="3D Demo"
-        title="Biomechanics Viewer Prototype"
-        description="A web-native proxy for simulation-grade geometry interaction. The 3D renderer is opt-in to keep initial load fast."
+        title="Biomechanics Repositioning Proxy"
+        description="A lightweight articulated mesh proxy for the Piper repositioning work. The 3D renderer is opt-in to keep initial load fast."
       >
         <LazyModelViewer3D />
       </SectionBlock>
@@ -71,7 +70,7 @@ export default function LabPage() {
       <SectionBlock
         eyebrow="LLM Demo"
         title="RAG + Performance Explorer"
-        description="Toggle baseline versus optimized inference mode to inspect retrieval traces, latency, throughput, and groundedness."
+        description="Compare baseline versus optimized serving behavior across retrieval traces, latency, throughput, and groundedness."
       >
         <DeferredSection
           fallback={
@@ -89,8 +88,8 @@ export default function LabPage() {
 
       <SectionBlock
         eyebrow="Vision Demo"
-        title="CV / Multimodal Benchmark Explorer"
-        description="Compare caption quality and recall/precision signals across baseline and multimodal model families."
+        title="Multimodal Benchmark Explorer"
+        description="Compare caption quality and recall/precision signals across classical and multimodal model families."
       >
         <DeferredSection
           fallback={

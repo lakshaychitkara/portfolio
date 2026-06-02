@@ -13,11 +13,11 @@ export function SiteFooter() {
           {privacyFlags.showLocationTag ? <p>{profile.location}</p> : null}
           <Link
             href={`mailto:${profile.email}`}
-            className="inline-flex min-h-[44px] items-center rounded-lg px-2 text-cyan-300 transition hover:bg-cyan-400/10 hover:text-cyan-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-300/80 md:ml-auto md:justify-end"
+            className="inline-flex min-h-[44px] items-center rounded-lg px-2 text-amber-200 transition hover:bg-amber-300/10 hover:text-amber-100 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber-300/80 md:ml-auto md:justify-end"
           >
             {profile.email}
           </Link>
-          <p className="font-mono text-xs uppercase tracking-[0.15em] text-slate-400">
+          <p className="font-mono text-xs uppercase text-slate-400">
             Built with Next.js + FastAPI-ready architecture
           </p>
         </div>

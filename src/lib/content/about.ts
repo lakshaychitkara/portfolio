@@ -11,10 +11,10 @@ export const aboutDisplayConfig: AboutDisplayConfig = {
   ],
   limits: {
     heroHighlights: 3,
-    evidenceMetrics: 4,
-    featuredProjects: 3,
+    evidenceMetrics: 6,
+    featuredProjects: 4,
     capabilities: 3,
-    careerPhases: 3,
+    careerPhases: 4,
     foundationProjects: 2,
     recruiterSignals: 2,
   },

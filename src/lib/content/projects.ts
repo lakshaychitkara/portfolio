@@ -5,229 +5,114 @@ export { projectCategories };
 
 export const projects: Project[] = [
   {
-    slug: "legal-assistant-vllm-optimization",
-    title: "Legal Assistant Optimization on vLLM",
-    tagline:
-      "Stabilized a legal-domain assistant by migrating to vLLM, enabling prefix caching, and tuning memory + streaming behavior under load.",
-    year: "2025",
-    domain: ["llm", "fullstack"],
-    priority: "flagship",
-    impactSummary:
-      "Stabilized concurrency-heavy legal assistant behavior with lower latency variance and stronger evidence grounding.",
-    proofBadges: ["Load-tested", "Latency-tuned", "Production patterns"],
-    readTimeMinutes: 6,
-    visual: {
-      label: "Inference Graph",
-      gradientFrom: "#0ea5e9",
-      gradientTo: "#0f172a",
-      caption: "Routing and caching graph used in the optimized inference path.",
-    },
-    challenge:
-      "Latency spikes, memory side effects, and thread synchronization issues were reducing reliability in concurrent chatbot sessions.",
-    stack: [
-      "vLLM",
-      "Chainlit",
-      "Prompt engineering",
-      "FastAPI",
-      "Load testing",
-      "Structured outputs",
-    ],
-    projectImpact: [
-      {
-        label: "Load Tested",
-        value: "50 users",
-        context: "Parallel traffic benchmark executed after migration and caching updates.",
-      },
-      {
-        label: "Token Throughput",
-        value: ">36 tok/s",
-        context: "Observed in 10-user parallel test runs with stabilized generation.",
-      },
-      {
-        label: "Memory Strategy",
-        value: "5-turn window",
-        context: "Sliding memory implementation reduced context drift in follow-up queries.",
-      },
-    ],
-    architecture: [
-      "Inference path migrated from transformer-serving setup to vLLM runtime",
-      "Prefix caching enabled for repeated context acceleration",
-      "Concurrency issues fixed between background generation and stream emission",
-      "Prompt/classification layer updated for legal-basic and legal-complex scenarios",
-    ],
-    sections: [
-      {
-        heading: "Context",
-        body: "The core problem was not only latency but consistency under concurrency. Speed and answer quality had to improve together.",
-      },
-      {
-        heading: "Implementation",
-        body: "I fixed adapter stacking, EOS-token latency, threading sync faults, and memory side effects while introducing prefix caching and more deterministic prompt behavior.",
-      },
-      {
-        heading: "Result",
-        body: "The assistant handled significantly higher parallel traffic with better throughput and stronger response stability.",
-      },
-    ],
-    featured: true,
-    demoRoute: "/lab",
-    cta: {
-      label: "Try RAG Explorer",
-      href: "/lab",
-    },
-  },
-  {
-    slug: "seo-wireframe-content-generator",
-    title: "SEO Wireframe Content Generator",
-    tagline:
-      "Improved a content-generation pipeline with depth-controlled crawling, SEO keyword generation, and cleaner retrieval prompts.",
-    year: "2025",
-    domain: ["fullstack", "llm"],
-    priority: "notable",
-    impactSummary:
-      "Increased content relevance and controllability with SEO-aware retrieval and depth-controlled crawl behavior.",
-    proofBadges: ["SEO-aware", "Crawler resilience", "Prompt iteration"],
-    readTimeMinutes: 5,
-    visual: {
-      label: "Content Pipeline",
-      gradientFrom: "#f59e0b",
-      gradientTo: "#1e293b",
-      caption: "Multi-step generation flow from keyword extraction to final draft output.",
-    },
-    challenge:
-      "Content quality and source relevance were inconsistent due to weak retrieval signals and crawler instability.",
-    stack: [
-      "Python",
-      "Web crawling",
-      "SEO keyword generation",
-      "Prompt engineering",
-      "JSON outputs",
-      "Figma API",
-    ],
-    projectImpact: [
-      {
-        label: "Crawler Depth",
-        value: "20 levels",
-        context: "Depth-limited crawling implemented to improve breadth while controlling crawl behavior.",
-      },
-      {
-        label: "Content Variants",
-        value: "9 reels",
-        context: "Prompt iteration pipeline produced targeted content variants with feedback-driven improvement.",
-      },
-      {
-        label: "Input Upgrade",
-        value: "Question-based",
-        context: "Wireframe generator updated to accept question-form inputs for sharper retrieval intent.",
-      },
-    ],
-    architecture: [
-      "SEO keyword module added before web search and scrape stages",
-      "Crawl depth control and failure handling embedded into extraction logic",
-      "Prompt templates adjusted for content format consistency",
-      "Storage and debugging workflow improved for generated artifacts",
-    ],
-    sections: [
-      {
-        heading: "Context",
-        body: "The objective was to make generated content more relevant, faster to validate, and easier to iterate with stakeholders.",
-      },
-      {
-        heading: "Implementation",
-        body: "I added question-based prompting, SEO-aware retrieval, depth-controlled crawling, and quality-focused prompt updates.",
-      },
-      {
-        heading: "Result",
-        body: "The pipeline became more controllable and produced consistently better draft quality for downstream review.",
-      },
-    ],
-    featured: true,
-  },
-  {
     slug: "piper-repositioning-stability",
-    title: "Piper Repositioning Stability Engineering",
+    title: "Piper Whole-Body Repositioning Stability",
     tagline:
-      "Resolved geometry and contour failures in biomechanical repositioning pipelines with metadata correction and dynamic axis logic.",
+      "Advanced FE-HBM repositioning across knee, hip, lumbar, thorax, and shoulder workflows with metadata correction, contour logic, diagnostics, and documentation automation.",
     year: "2026",
     domain: ["cpp3d"],
     priority: "flagship",
     impactSummary:
-      "Removed geometric failure modes and improved model stability in posture-sensitive repositioning simulations.",
-    proofBadges: ["Geometry fixes", "Mesh quality", "Pipeline consistency"],
-    readTimeMinutes: 7,
+      "Turned geometry-heavy repositioning failures into measurable mesh-quality wins and reusable engineering workflows.",
+    proofBadges: ["C++ geometry", "Mesh diagnostics", "Research automation"],
+    readTimeMinutes: 8,
     visual: {
-      label: "Knee Axis Model",
-      gradientFrom: "#fb923c",
-      gradientTo: "#0f172a",
-      caption: "Axis and contour overlays used during stability diagnostics.",
+      label: "Biomechanics Mesh",
+      gradientFrom: "#0f766e",
+      gradientTo: "#3f1d0b",
+      caption: "Generated visualization of the repositioning, contour, and diagnostic workflow.",
+      src: "/portfolio-assets/piper-biomechanics.png",
+      alt: "Technical biomechanics mesh visualization with hip, knee, lumbar, contour, and diagnostic overlays.",
     },
     challenge:
-      "Bone intersections, contour tearing, and negative elements blocked reliable posture-specific model generation.",
-    stack: ["C++", "VTK", "Qt/QML", "CMake", "LS-DYNA", "CGAL"],
+      "High-flexion repositioning exposed intersecting contours, duplicate-node tearing, negative elements, model-axis mismatches, and platform-specific tooling gaps.",
+    stack: ["C++", "VTK", "Qt/QML", "CMake", "LS-DYNA", "CGAL", "SWIG"],
     projectImpact: [
       {
-        label: "Flexion Quality",
-        value: "45deg stable",
-        context: "Left-knee contour intersections removed up to 45deg flexion after tanh/sine strategy refinements.",
+        label: "Knee Flexion",
+        value: "70deg stable",
+        context: "Metadata and timestep updates extended stable THUMS/IDM knee flexion from earlier 45deg work.",
       },
       {
         label: "Negative Elements",
-        value: "0 (IDM case)",
-        context: "Iterative correction achieved zero negatives while reducing penetrations in corrected workflow.",
+        value: "~6000 to 2",
+        context: "Aligned detection scripts and scaling logic to reduce GHBMC negative elements dramatically.",
       },
       {
-        label: "Pipeline Consistency",
-        value: "Left/Right unified",
-        context: "Knee repositioning logic was synchronized across both pipelines to reduce divergence.",
+        label: "IDM Quality",
+        value: "0 negatives",
+        context: "Iterative validity checks removed negative solid elements while reducing penetrations.",
+      },
+      {
+        label: "Automation",
+        value: "Headless docs",
+        context: "Built a C++/Python documentation system for FE-HBM repositioning evidence capture.",
       },
     ],
     architecture: [
-      "Dynamic FE-axis logic implemented and compared against correction-based methods",
-      "Contour parallelization functions reworked for moving-axis projections",
-      "Metadata endpoint and landmark corrections applied to eliminate axis mismatch",
-      "Build tooling hardened with path validation and reproducible shell scripts",
+      "Refactored contour parallelization toward object-oriented processing and reusable region definitions.",
+      "Corrected lumbar, thorax, knee, and shoulder metadata to reduce skewed contours and bone penetration.",
+      "Added VTK-based negative-volume visualization and whole-body repositioning UI controls in QML.",
+      "Created path-flexible Linux build scripts and headless evidence-generation automation for paper workflows.",
     ],
     sections: [
       {
-        heading: "Context",
-        body: "The work sat in a high-stakes loop where geometric correctness and mesh quality had to improve without introducing new deformation artifacts.",
+        heading: "Problem",
+        body: "The repositioning pipeline had to preserve anatomical intent while preventing mesh tearing, contour intersections, and negative element regressions.",
       },
       {
-        heading: "Implementation",
-        body: "I iterated across dynamic-axis methods, correction functions, contour smoothing strategies, and metadata fixes until persistent blockers were isolated and removed.",
+        heading: "Approach",
+        body: "I combined metadata correction, VTK cutter changes, contour-region rearchitecture, timestep tuning, and validation scripts so every geometry fix could be checked against mesh quality.",
       },
       {
         heading: "Result",
-        body: "Model stability improved materially in key knee-repositioning scenarios, and the pipeline became easier to validate and reproduce across environments.",
+        body: "The work improved knee, lumbar, thorax, and shoulder workflows while producing cleaner diagnostics, stronger automation, and paper-ready evidence.",
+      },
+    ],
+    timeline: [
+      {
+        heading: "Mar 2026",
+        body: "Resolved IDM negative elements to zero and built iterative penetration correction checks.",
+      },
+      {
+        heading: "Apr 2026",
+        body: "Fixed lumbar/thorax metadata, VTK cutter intersections, and reduced GHBMC negative elements from roughly 6000 to 2.",
+      },
+      {
+        heading: "May-Jun 2026",
+        body: "Advanced whole-body UI, negative-element visualization, headless docs, and paper image/report generation.",
       },
     ],
     featured: true,
   },
   {
     slug: "multimodal-video-retrieval-benchmarks",
-    title: "Multimodal Video Retrieval Benchmark Suite",
+    title: "Multimodal Retrieval and OCR Benchmark Suite",
     tagline:
-      "Benchmarked retrieval and captioning quality across language-vision models and index strategies for production decision-making.",
+      "Benchmarked video retrieval, captioning, embedding indexes, OCR stacks, and color-detection models to choose production-fit multimodal architecture.",
     year: "2026",
     domain: ["cv", "llm"],
     priority: "flagship",
     impactSummary:
-      "Established benchmark-backed model/index choices for production retrieval and caption quality decisions.",
+      "Replaced model guesswork with measured recall, confidence, latency, OCR quality, and index trade-off evidence.",
     proofBadges: ["Scale benchmarks", "Model comparison", "Retrieval validation"],
-    readTimeMinutes: 6,
+    readTimeMinutes: 7,
     visual: {
       label: "Benchmark Matrix",
-      gradientFrom: "#10b981",
-      gradientTo: "#0f172a",
-      caption: "Recall/latency matrix across multimodal model families and FAISS index types.",
+      gradientFrom: "#059669",
+      gradientTo: "#3f1d0b",
+      caption: "Generated visualization of video, embedding, OCR, and index benchmark signals.",
+      src: "/portfolio-assets/multimodal-benchmark.png",
+      alt: "Technical dashboard with video frames, embedding clusters, OCR tiles, and benchmark charts.",
     },
     challenge:
-      "Model quality varied heavily by dataset and retrieval index choice, making deployment decisions unclear.",
+      "Video retrieval, captioning, OCR, and index behavior varied heavily by dataset and cost profile, making production decisions risky without direct measurement.",
     stack: [
       "InternVideo2",
       "LanguageBind",
       "X-CLIP",
       "Gemini Embedding 2",
+      "PaddleOCR-VL",
       "FAISS",
       "PyTorch",
     ],
@@ -247,39 +132,260 @@ export const projects: Project[] = [
         value: "600k embeddings",
         context: "Flat, HNSW, and IVF build/query/recall trade-offs benchmarked at high scale.",
       },
+      {
+        label: "OCR Coverage",
+        value: "4 stacks",
+        context: "Compared Tesseract, DeepSeek-OCR, GLM-OCR, and PaddleOCR/PaddleOCR-VL paths.",
+      },
     ],
     architecture: [
-      "Dataset prep layer for public and custom CCTV sources",
-      "Model runner abstraction for retrieval + captioning families",
-      "FAISS benchmarking harness for index strategy comparison",
-      "Standalone query/embed scripts for production integration planning",
+      "Dataset prep layer for public, CCTV, Kaggle vehicle, and scanned-document sources.",
+      "Model runner comparisons across InternVideo, LanguageBind, X-CLIP, Gemini Embedding 2, Qwen, BLIP, and OCR stacks.",
+      "FAISS harness for Flat, HNSW, and IVF build/query/recall trade-off analysis at 600k embeddings.",
+      "Standalone encoder and query embedding scripts prepared for downstream video-retrieval integration.",
     ],
     sections: [
       {
-        heading: "Context",
-        body: "The objective was to choose model/index combinations based on measured behavior, not assumptions.",
+        heading: "Problem",
+        body: "The team needed model and retrieval choices that were defensible across real video, CCTV, OCR, and cost constraints.",
       },
       {
-        heading: "Implementation",
-        body: "I benchmarked multiple model families and index types, then compared confidence, recall, and latency trade-offs across datasets.",
+        heading: "Approach",
+        body: "I compared recall metrics, confidence scores, caption quality, OCR extraction quality, inference time, and embedding-index behavior instead of optimizing one metric in isolation.",
       },
       {
         heading: "Result",
-        body: "The team gained a clearer path for retrieval architecture decisions with defensible benchmark evidence.",
+        body: "The benchmark suite clarified model/index fit and gave the team reusable scripts for future retrieval and OCR decisions.",
+      },
+    ],
+    timeline: [
+      {
+        heading: "Feb 2026",
+        body: "Benchmarked InternVideo2, LanguageBind variants, MobileCLIP, X-CLIP, and manually annotated CCTV data.",
+      },
+      {
+        heading: "Mar 2026",
+        body: "Added Gemini Embedding 2, FAISS 600k index tests, OCR model comparisons, and InternVL2.5 color validation.",
       },
     ],
     featured: true,
     demoRoute: "/lab",
     cta: {
-      label: "Open CV Benchmark Lab",
+      label: "Open Benchmark Lab",
       href: "/lab",
     },
+  },
+  {
+    slug: "legal-assistant-vllm-optimization",
+    title: "Legal Assistant Optimization on vLLM",
+    tagline:
+      "Stabilized a legal-domain assistant by migrating to vLLM, enabling prefix caching, and tuning memory plus streaming behavior under load.",
+    year: "2025",
+    domain: ["llm", "fullstack"],
+    priority: "flagship",
+    impactSummary:
+      "Improved concurrency-heavy assistant behavior with lower latency variance and stronger evidence grounding.",
+    proofBadges: ["Load-tested", "Latency-tuned", "Production patterns"],
+    readTimeMinutes: 6,
+    visual: {
+      label: "LLM Serving Graph",
+      gradientFrom: "#0f766e",
+      gradientTo: "#111827",
+      caption: "Generated visualization of routing, caching, streaming, and memory-window behavior.",
+      src: "/portfolio-assets/llm-systems.png",
+      alt: "Technical LLM serving architecture with routing paths, cache blocks, streaming traces, and metric panels.",
+    },
+    challenge:
+      "Latency spikes, memory side effects, hallucination behavior, and thread synchronization issues reduced reliability in concurrent chatbot sessions.",
+    stack: ["vLLM", "Chainlit", "Prompt engineering", "FastAPI", "Load testing", "Structured outputs"],
+    projectImpact: [
+      {
+        label: "Load Tested",
+        value: "50 users",
+        context: "Parallel traffic benchmark executed after migration and caching updates.",
+      },
+      {
+        label: "Token Throughput",
+        value: ">36 tok/s",
+        context: "Observed in 10-user parallel test runs with stabilized generation.",
+      },
+      {
+        label: "Memory Strategy",
+        value: "5-turn window",
+        context: "Sliding memory implementation reduced context drift in follow-up queries.",
+      },
+    ],
+    architecture: [
+      "Inference path migrated from transformer-serving setup to vLLM runtime.",
+      "Prefix caching enabled for repeated legal context acceleration.",
+      "Background generation and streaming synchronization bugs identified and fixed.",
+      "Prompt/classification behavior updated for legal-basic, legal-complex, and nonsensical input scenarios.",
+    ],
+    sections: [
+      {
+        heading: "Problem",
+        body: "The assistant needed to improve speed without letting memory, streaming, or grounding quality drift under concurrent use.",
+      },
+      {
+        heading: "Approach",
+        body: "I fixed adapter stacking, EOS-token latency, synchronization faults, memory side effects, and prompt behavior while introducing prefix caching.",
+      },
+      {
+        heading: "Result",
+        body: "The system handled higher parallel traffic with stronger throughput, more stable generation, and clearer edge-case behavior.",
+      },
+    ],
+    timeline: [
+      {
+        heading: "Nov 2025",
+        body: "Migrated to vLLM, enabled prefix caching, fixed latency/threading issues, and tested up to 50 users.",
+      },
+    ],
+    featured: true,
+    demoRoute: "/lab",
+    cta: {
+      label: "Try RAG Explorer",
+      href: "/lab",
+    },
+  },
+  {
+    slug: "storms-document-assistant",
+    title: "STORMS Document and Multilingual Assistant",
+    tagline:
+      "Built FastAPI summarization, chatbot, multilingual, and audio-processing paths while profiling CPU latency and stabilizing model behavior.",
+    year: "2026",
+    domain: ["llm", "fullstack"],
+    priority: "flagship",
+    impactSummary:
+      "Moved a document assistant from service prototype toward multilingual, context-aware, CPU-conscious product behavior.",
+    proofBadges: ["FastAPI service", "Multilingual", "Audio pipeline"],
+    readTimeMinutes: 5,
+    visual: {
+      label: "Assistant Pipeline",
+      gradientFrom: "#0f766e",
+      gradientTo: "#3f1d0b",
+      caption: "Generated visualization of service routing, context summarization, audio, and model orchestration.",
+      src: "/portfolio-assets/llm-systems.png",
+      alt: "Technical assistant pipeline with service nodes, cache blocks, audio traces, and model monitoring panels.",
+    },
+    challenge:
+      "The assistant needed document parsing, summarization, multilingual behavior, and audio support while staying practical on CPU-constrained workflows.",
+    stack: ["FastAPI", "Qwen", "Gemma", "Indic2 200M", "Prompt optimization", "Audio processing"],
+    projectImpact: [
+      {
+        label: "Service Layer",
+        value: "FastAPI",
+        context: "Document summarization and parsing service paths were implemented and benchmarked.",
+      },
+      {
+        label: "Model Tracks",
+        value: "Qwen/Gemma",
+        context: "Provisioned Qwen and later built chatbot flows using Gemma 4 31B before switching models for quality.",
+      },
+      {
+        label: "Language Support",
+        value: "Indic2 200M",
+        context: "Integrated Indic2 200M for multilingual expansion work.",
+      },
+      {
+        label: "Stability",
+        value: "OOM fixed",
+        context: "Resolved CPU audio out-of-memory failures and profiled the pipeline.",
+      },
+    ],
+    architecture: [
+      "FastAPI service paths added for document summarization, parsing, and prompt-controlled responses.",
+      "Quantized prompt workflows optimized while testing CPU latency and model behavior.",
+      "Multilingual support added through Indic2 200M integration.",
+      "Context summarization added to improve chatbot continuity without overloading the conversation window.",
+    ],
+    sections: [
+      {
+        heading: "Problem",
+        body: "The product needed to summarize documents, support broader language coverage, and handle audio processing without assuming abundant GPU resources.",
+      },
+      {
+        heading: "Approach",
+        body: "I implemented FastAPI service flows, provisioned and evaluated model options, optimized prompts, added Indic2 multilingual support, and fixed CPU audio OOM issues.",
+      },
+      {
+        heading: "Result",
+        body: "The assistant became more product-ready: documented, benchmarked, multilingual-aware, and more stable under practical runtime constraints.",
+      },
+    ],
+    timeline: [
+      {
+        heading: "May 2026",
+        body: "Built FastAPI summarization, expanded parsing, provisioned Qwen, added Indic2, fixed audio OOM, and added context summarization.",
+      },
+    ],
+    featured: true,
+  },
+  {
+    slug: "seo-wireframe-content-generator",
+    title: "SEO Wireframe Content Generator",
+    tagline:
+      "Improved a content-generation pipeline with depth-controlled crawling, SEO keyword generation, Figma API learning, and cleaner retrieval prompts.",
+    year: "2025",
+    domain: ["fullstack", "llm"],
+    priority: "notable",
+    impactSummary:
+      "Increased content relevance and controllability with SEO-aware retrieval and depth-controlled crawl behavior.",
+    proofBadges: ["SEO-aware", "Crawler resilience", "Prompt iteration"],
+    readTimeMinutes: 5,
+    visual: {
+      label: "Content Pipeline",
+      gradientFrom: "#d97706",
+      gradientTo: "#111827",
+      caption: "Pipeline from keyword intent to crawl, scrape, prompt, and generated content.",
+    },
+    challenge:
+      "Content quality and source relevance were inconsistent due to weak retrieval signals, crawler instability, and unstructured output handling.",
+    stack: ["Python", "Web crawling", "SEO keyword generation", "Prompt engineering", "JSON outputs", "Figma API"],
+    projectImpact: [
+      {
+        label: "Crawler Depth",
+        value: "20 levels",
+        context: "Depth-limited crawling implemented to improve breadth while controlling crawl behavior.",
+      },
+      {
+        label: "Content Variants",
+        value: "9 reels",
+        context: "Prompt iteration pipeline produced targeted content variants with feedback-driven improvement.",
+      },
+      {
+        label: "Input Upgrade",
+        value: "Question-based",
+        context: "Wireframe generator updated to accept question-form inputs for sharper retrieval intent.",
+      },
+    ],
+    architecture: [
+      "SEO keyword module added before web search and scraping stages.",
+      "Crawl depth control and failure handling embedded into extraction logic.",
+      "Prompt templates adjusted for content format consistency and feedback loops.",
+      "Figma API behavior explored for wireframe content manipulation.",
+    ],
+    sections: [
+      {
+        heading: "Problem",
+        body: "The generator needed sharper source selection, better content quality, and a cleaner stakeholder feedback loop.",
+      },
+      {
+        heading: "Approach",
+        body: "I added question-based inputs, SEO-aware retrieval, depth-controlled crawling, scraping fixes, and prompt quality improvements.",
+      },
+      {
+        heading: "Result",
+        body: "The pipeline became more controllable and produced stronger draft quality for downstream review.",
+      },
+    ],
+    featured: false,
   },
   {
     slug: "social-listening-poc",
     title: "Social Listening Product PoC",
     tagline:
-      "Delivered an end-to-end social listening proof-of-concept combining platform ingestion, UI iteration, and latency review loops.",
+      "Delivered an end-to-end social listening proof-of-concept combining platform ingestion, UI iteration, latency review, and stakeholder feedback.",
     year: "2026",
     domain: ["fullstack", "llm"],
     priority: "notable",
@@ -289,12 +395,14 @@ export const projects: Project[] = [
     readTimeMinutes: 4,
     visual: {
       label: "Signal Dashboard",
-      gradientFrom: "#22d3ee",
-      gradientTo: "#1e293b",
-      caption: "Signal aggregation UI from Instagram and YouTube ingestion endpoints.",
+      gradientFrom: "#0f766e",
+      gradientTo: "#3f1d0b",
+      caption: "Signal aggregation flow from Instagram and YouTube ingestion endpoints.",
+      src: "/portfolio-assets/multimodal-benchmark.png",
+      alt: "Technical signal dashboard with source panels, charts, and clustering overlays.",
     },
     challenge:
-      "Needed a usable PoC quickly while integrating external sources and incorporating iterative feedback without destabilizing flow.",
+      "The team needed a usable PoC quickly while integrating external sources and incorporating iterative feedback without destabilizing the product flow.",
     stack: ["React", "Node.js", "API ingestion", "YouTube API", "Instagram API", "Prompt refinement"],
     projectImpact: [
       {
@@ -308,29 +416,35 @@ export const projects: Project[] = [
         context: "Completed reviewed PoC branch with cleanup and rerun validation.",
       },
       {
-        label: "Feedback Cycles",
+        label: "Review Cycles",
         value: "2+",
         context: "Multiple review rounds incorporated before final push.",
       },
     ],
     architecture: [
-      "Source extractors added for two social platforms",
-      "UI flow iterated after review feedback",
-      "Latency observations captured and shared for feasibility decisions",
-      "Code cleanup and rerun verification performed before delivery",
+      "Source extractors added for two social platforms.",
+      "UI flow iterated after review feedback.",
+      "Latency observations captured and shared for feasibility decisions.",
+      "Code cleanup and rerun verification performed before delivery.",
     ],
     sections: [
       {
-        heading: "Context",
-        body: "This PoC prioritized fast iteration with enough engineering rigor to support meaningful product evaluation.",
+        heading: "Problem",
+        body: "The PoC needed to make social signals explorable quickly while keeping ingestion and UI behavior stable enough for demo review.",
       },
       {
-        heading: "Implementation",
-        body: "I built ingestion + UI flow, applied review feedback cycles, and validated runtime behavior after branch sync.",
+        heading: "Approach",
+        body: "I built ingestion plus UI flow, integrated platform APIs, incorporated review feedback, cleaned the branch, and reran the app locally.",
       },
       {
         heading: "Result",
-        body: "Delivered a functional social listening baseline that was immediately demo-ready and extendable.",
+        body: "The PoC became demo-ready and gave stakeholders a concrete baseline for social listening product discussions.",
+      },
+    ],
+    timeline: [
+      {
+        heading: "Mar 2026",
+        body: "Completed API extraction, UI improvements, cleanup, rerun validation, and latency sharing.",
       },
     ],
     featured: false,

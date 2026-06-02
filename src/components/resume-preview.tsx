@@ -14,7 +14,7 @@ export function ResumePreview() {
         <button
           type="button"
           onClick={() => setLoaded(true)}
-          className="mt-4 inline-flex min-h-[44px] items-center rounded-full bg-cyan-400 px-4 py-2 text-sm font-semibold text-slate-950 transition hover:bg-cyan-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-300/80"
+          className="mt-4 inline-flex min-h-[44px] items-center rounded-lg bg-amber-300 px-4 py-2 text-sm font-semibold text-slate-950 transition hover:bg-amber-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber-300/80"
         >
           Load Resume Preview
         </button>
@@ -28,7 +28,7 @@ export function ResumePreview() {
         title="Resume Preview"
         src="/resume.pdf"
         loading="lazy"
-        className="h-[620px] w-full rounded-xl border border-white/10 bg-slate-950"
+        className="h-[620px] w-full rounded-lg border border-white/10 bg-slate-950"
       />
     </div>
   );

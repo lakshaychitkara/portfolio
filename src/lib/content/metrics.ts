@@ -3,51 +3,63 @@ import type { EvidenceMetric } from "@/lib/types";
 export const evidenceMetrics: EvidenceMetric[] = [
   {
     id: "ev-01",
+    label: "Piper Mesh Quality",
+    value: "~6000 to 2",
+    context: "GHBMC negative elements reduced after detection-script alignment and scaling corrections.",
+  },
+  {
+    id: "ev-02",
+    label: "Knee Flexion Stability",
+    value: "70deg",
+    context: "THUMS/IDM knee flexion stability extended through metadata and timestep updates.",
+  },
+  {
+    id: "ev-03",
     label: "vLLM Load Test",
     value: "50 users",
     context: "Parallel load testing completed after enabling prefix caching and architecture migration.",
   },
   {
-    id: "ev-02",
-    label: "Observed Token Rate",
-    value: ">36 tok/s",
-    context: "Measured during 10-user parallel chat benchmarking in production-like conditions.",
-  },
-  {
-    id: "ev-03",
+    id: "ev-04",
     label: "Retrieval Benchmark Scale",
     value: "600k embeddings",
     context: "Flat/HNSW/IVF comparison script executed for build/query/recall analysis.",
   },
   {
-    id: "ev-04",
+    id: "ev-05",
     label: "Video Evaluation Set",
     value: "1,000 pairs",
-    context: "InternVideo and language-vision model comparison across recall metrics.",
-  },
-  {
-    id: "ev-05",
-    label: "CCTV Annotation",
-    value: "104 videos",
-    context: "Manual annotation pipeline used for model confidence and recall comparison.",
+    context: "InternVideo, LanguageBind, X-CLIP, and related model families compared across recall metrics.",
   },
   {
     id: "ev-06",
-    label: "Simulation Quality Win",
-    value: "0 negative elements",
-    context: "IDM repositioning correction run achieved zero negative elements while reducing penetration.",
+    label: "CCTV Annotation",
+    value: "104 videos",
+    context: "Manual annotation pipeline used for model confidence, recall, and retrieval comparison.",
+  },
+  {
+    id: "ev-07",
+    label: "OCR Benchmark Breadth",
+    value: "4 stacks",
+    context: "Tesseract, DeepSeek-OCR, GLM-OCR, and PaddleOCR/PaddleOCR-VL were explored for scanned PDFs.",
+  },
+  {
+    id: "ev-08",
+    label: "STORMS Runtime Fix",
+    value: "OOM fixed",
+    context: "CPU audio processing failures were resolved while profiling document-assistant performance.",
   },
 ];
 
 export const recruiterSignals = [
-  "Demonstrated ability to move from learning velocity to production-level AI system execution.",
-  "Validated model and retrieval decisions with measurable benchmarks instead of anecdotal comparisons.",
-  "Comfortable owning both low-level C++ simulation complexity and high-level product-facing delivery.",
+  "Owns evidence-heavy AI systems work across LLM serving, multimodal retrieval, OCR, and C++ simulation.",
+  "Validates architecture choices with benchmarks, load tests, and mesh-quality diagnostics rather than intuition.",
+  "Comfortable moving between production UI/API delivery, model evaluation, and low-level geometry debugging.",
 ];
 
 export const resumeHighlights = [
-  "Migrated chatbot architecture to vLLM and stabilized multi-user inference behavior.",
-  "Benchmarked retrieval and multimodal stacks across 1,000-pair and 104-video datasets.",
-  "Shipped FastAPI + LangChain service patterns with structured output and parser control.",
-  "Solved complex C++ repositioning issues including axis mismatch, contour tearing, and negative elements.",
+  "Reduced GHBMC negative elements from roughly 6000 to 2 and extended stable knee flexion to 70deg in Piper workflows.",
+  "Migrated chatbot architecture to vLLM and stabilized multi-user inference behavior with prefix caching.",
+  "Benchmarked retrieval, captioning, OCR, and embedding-index stacks across 1,000-pair, 104-video, and 600k-embedding datasets.",
+  "Built FastAPI document-assistant services with multilingual, context summarization, and CPU audio-processing improvements.",
 ];

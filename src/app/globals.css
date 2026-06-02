@@ -10,9 +10,9 @@
   --accent-amber: #fbbf24;
   --accent-emerald: #34d399;
   --accent-orange: #fb923c;
-  --font-fluid-sm: clamp(0.84rem, 0.8rem + 0.28vw, 0.94rem);
-  --font-fluid-base: clamp(0.95rem, 0.9rem + 0.34vw, 1.06rem);
-  --font-fluid-display: clamp(1.85rem, 1.45rem + 1.9vw, 3.35rem);
+  --font-fluid-sm: 0.875rem;
+  --font-fluid-base: 1rem;
+  --font-fluid-display: 3rem;
   --font-sans: "Avenir Next", "Segoe UI", "Noto Sans", "Helvetica Neue", sans-serif;
   --font-heading: "Trebuchet MS", "Avenir Next Condensed", "Segoe UI", sans-serif;
   --font-mono: "IBM Plex Mono", "SFMono-Regular", Menlo, Consolas, monospace;
@@ -31,9 +31,10 @@
 }
 
 body {
-  background: radial-gradient(circle at 12% -10%, rgba(14, 165, 233, 0.22), transparent 36%),
-    radial-gradient(circle at 90% 10%, rgba(251, 191, 36, 0.12), transparent 28%),
-    linear-gradient(180deg, var(--surface-1) 0%, var(--surface-0) 42%, #020617 100%);
+  background:
+    linear-gradient(135deg, rgba(15, 118, 110, 0.18) 0%, transparent 34%),
+    linear-gradient(220deg, rgba(251, 191, 36, 0.12) 0%, transparent 32%),
+    linear-gradient(180deg, #111827 0%, var(--surface-0) 48%, #020617 100%);
   color: var(--text-main);
   font-family: var(--font-sans);
   font-size: var(--font-fluid-base);
@@ -45,7 +46,7 @@ h2,
 h3,
 h4 {
   font-family: var(--font-heading);
-  letter-spacing: -0.02em;
+  letter-spacing: 0;
   text-wrap: balance;
 }
 
@@ -60,8 +61,8 @@ h4 {
   inset: 0;
   z-index: -2;
   background:
-    radial-gradient(circle at 85% 15%, rgba(20, 184, 166, 0.16), transparent 28%),
-    radial-gradient(circle at 10% 80%, rgba(251, 146, 60, 0.12), transparent 25%);
+    linear-gradient(90deg, rgba(20, 184, 166, 0.1), transparent 35%, rgba(251, 191, 36, 0.08)),
+    linear-gradient(180deg, rgba(15, 23, 42, 0), rgba(2, 6, 23, 0.45));
 }
 
 .atlas-bg::after {
@@ -88,19 +89,19 @@ a {
 }
 
 .card-surface {
-  border-radius: 1rem;
+  border-radius: 0.5rem;
   border: 1px solid rgba(255, 255, 255, 0.09);
-  background: rgba(15, 23, 42, 0.72);
+  background: rgba(15, 23, 42, 0.76);
 }
 
 .card-surface-muted {
-  border-radius: 0.85rem;
+  border-radius: 0.5rem;
   border: 1px solid rgba(255, 255, 255, 0.08);
   background: rgba(2, 6, 23, 0.62);
 }
 
 .chip {
-  border-radius: 9999px;
+  border-radius: 0.375rem;
   border: 1px solid rgba(255, 255, 255, 0.18);
   background: rgba(255, 255, 255, 0.03);
   padding: 0.2rem 0.65rem;
@@ -109,24 +110,53 @@ a {
 }
 
 .about-card-metric {
-  border-radius: 0.95rem;
-  border: 1px solid rgba(34, 211, 238, 0.22);
+  border-radius: 0.5rem;
+  border: 1px solid rgba(251, 191, 36, 0.24);
   background:
-    radial-gradient(circle at 90% 8%, rgba(34, 211, 238, 0.16), transparent 42%),
+    linear-gradient(135deg, rgba(251, 191, 36, 0.12), transparent 45%),
     rgba(15, 23, 42, 0.82);
 }
 
 .about-card-narrative {
-  border-radius: 1rem;
+  border-radius: 0.5rem;
   border: 1px solid rgba(148, 163, 184, 0.26);
   background: linear-gradient(160deg, rgba(15, 23, 42, 0.84) 0%, rgba(15, 23, 42, 0.68) 100%);
-  box-shadow: 0 18px 44px -30px rgba(14, 116, 144, 0.65);
+  box-shadow: 0 18px 44px -30px rgba(251, 191, 36, 0.45);
 }
 
 .about-card-action {
-  border-radius: 0.95rem;
-  border: 1px dashed rgba(34, 211, 238, 0.34);
+  border-radius: 0.5rem;
+  border: 1px dashed rgba(251, 191, 36, 0.34);
   background: rgba(2, 6, 23, 0.56);
+}
+
+.evidence-card {
+  border-radius: 0.5rem;
+  border: 1px solid rgba(148, 163, 184, 0.18);
+  background:
+    linear-gradient(135deg, rgba(15, 118, 110, 0.16), transparent 40%),
+    rgba(2, 6, 23, 0.72);
+}
+
+.hero-editorial {
+  position: relative;
+  overflow: hidden;
+  min-height: min(760px, calc(100vh - 72px));
+  isolation: isolate;
+}
+
+.hero-editorial::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background:
+    linear-gradient(90deg, rgba(2, 6, 23, 0.96) 0%, rgba(2, 6, 23, 0.82) 38%, rgba(2, 6, 23, 0.25) 72%, rgba(2, 6, 23, 0.76) 100%),
+    linear-gradient(180deg, rgba(2, 6, 23, 0.16), rgba(2, 6, 23, 0.78));
+}
+
+.project-visual img {
+  transform: scale(1.01);
 }
 
 .motion-lift {

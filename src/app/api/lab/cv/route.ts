@@ -25,16 +25,16 @@ const captionsByFamily = {
   ],
   multimodal: [
     {
-      model: "InternVideo2",
+      model: "InternVideo2 + LanguageBind",
       caption:
-        "Understands continuous ergonomic motion with temporal context and identifies risky posture windows.",
+        "Captures temporal video semantics and improves retrieval coverage on CCTV-style clips.",
       recall: 0.88,
       precision: 0.86,
     },
     {
-      model: "LanguageBind + X-CLIP",
+      model: "Gemini Embedding 2 + OCR stack",
       caption:
-        "Links visual dynamics with textual intent cues, improving nuanced caption coverage in complex scenes.",
+        "Adds embedding comparison and document extraction signals for mixed video and scanned-PDF workflows.",
       recall: 0.91,
       precision: 0.84,
     },

@@ -57,7 +57,7 @@ export function LatencyDashboard() {
   if (!data) {
     return (
       <div className="card-surface p-5">
-        <p className="font-mono text-xs uppercase tracking-[0.15em] text-slate-400">
+        <p className="font-mono text-xs uppercase text-slate-400">
           Loading benchmark traces...
         </p>
         <div className="mt-4 space-y-3">
@@ -94,8 +94,8 @@ export function LatencyDashboard() {
   ];
 
   return (
-    <div className="rounded-2xl border border-white/10 bg-slate-900/80 p-5">
-      <p className="font-mono text-xs uppercase tracking-[0.15em] text-cyan-300">
+    <div className="rounded-lg border border-white/10 bg-slate-900/80 p-5">
+      <p className="font-mono text-xs uppercase text-amber-200">
         Baseline vs Optimized
       </p>
       <div className="mt-4 space-y-4">
@@ -121,13 +121,13 @@ export function LatencyDashboard() {
                   </div>
                 </div>
                 <div className="space-y-1">
-                  <div className="flex items-center justify-between text-xs text-cyan-200">
+                  <div className="flex items-center justify-between text-xs text-amber-200">
                     <span>Optimized</span>
                     <span>{row.optimized}</span>
                   </div>
                   <div className="h-2 overflow-hidden rounded-full bg-slate-800">
                     <div
-                      className="h-full rounded-full bg-cyan-400"
+                      className="h-full rounded-full bg-amber-300"
                       style={{ width: `${optimizedWidth}%` }}
                     />
                   </div>

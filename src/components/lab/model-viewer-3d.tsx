@@ -3,8 +3,9 @@
 import { useEffect, useMemo, useRef, useState } from "react";
 import { Canvas, useFrame } from "@react-three/fiber";
 import { OrbitControls } from "@react-three/drei";
+import { Axis3D, Pause, Rotate3D, ScanLine } from "lucide-react";
 import { detectReducedMotionPreference } from "@/lib/ui-settings";
-import type { Mesh } from "three";
+import type { Group } from "three";
 
 interface BodyProxyProps {
   wireframe: boolean;
@@ -14,33 +15,71 @@ interface BodyProxyProps {
 }
 
 function BodyProxy({ wireframe, showAxes, animate, lowPowerMode }: BodyProxyProps) {
-  const meshRef = useRef<Mesh>(null);
+  const groupRef = useRef<Group>(null);
 
   useFrame((state, delta) => {
-    if (!meshRef.current || !animate) {
+    if (!groupRef.current || !animate) {
       return;
     }
 
     const speed = lowPowerMode ? 0.15 : 0.35;
-    meshRef.current.rotation.y += delta * speed;
-    meshRef.current.rotation.x = Math.sin(state.clock.elapsedTime * 0.75) * 0.16;
+    groupRef.current.rotation.y += delta * speed;
+    groupRef.current.rotation.x = Math.sin(state.clock.elapsedTime * 0.55) * 0.08;
   });
 
   return (
-    <group>
-      <mesh ref={meshRef} position={[0, 0, 0]}>
-        <torusKnotGeometry args={[1.4, 0.42, 180, 24]} />
-        <meshStandardMaterial
-          color="#38bdf8"
-          roughness={0.3}
-          metalness={0.4}
-          wireframe={wireframe}
-        />
+    <group ref={groupRef} position={[0, -0.25, 0]}>
+      <mesh position={[0, 1.15, 0]} scale={[1.05, 0.45, 0.56]}>
+        <sphereGeometry args={[0.72, 32, 18]} />
+        <meshStandardMaterial color="#2dd4bf" roughness={0.35} metalness={0.25} wireframe={wireframe} />
       </mesh>
 
-      <mesh position={[0, 1.8, -0.8]}>
-        <sphereGeometry args={[0.28, 16, 16]} />
-        <meshStandardMaterial color="#f59e0b" />
+      <mesh position={[0, 2.05, 0]} scale={[0.72, 1.15, 0.42]}>
+        <sphereGeometry args={[0.64, 28, 18]} />
+        <meshStandardMaterial color="#67e8f9" roughness={0.38} metalness={0.22} wireframe={wireframe} transparent opacity={0.92} />
+      </mesh>
+
+      <mesh position={[0, 2.8, 0]}>
+        <sphereGeometry args={[0.28, 20, 16]} />
+        <meshStandardMaterial color="#fbbf24" roughness={0.28} metalness={0.2} />
+      </mesh>
+
+      <mesh position={[-0.52, 0.35, 0]} rotation={[0, 0, -0.28]}>
+        <cylinderGeometry args={[0.13, 0.16, 1.55, 24]} />
+        <meshStandardMaterial color="#38bdf8" wireframe={wireframe} roughness={0.35} />
+      </mesh>
+      <mesh position={[-0.82, -0.47, 0]} rotation={[0, 0, -0.34]}>
+        <cylinderGeometry args={[0.11, 0.13, 1.45, 24]} />
+        <meshStandardMaterial color="#2dd4bf" wireframe={wireframe} roughness={0.35} />
+      </mesh>
+      <mesh position={[0.52, 0.35, 0]} rotation={[0, 0, 0.28]}>
+        <cylinderGeometry args={[0.13, 0.16, 1.55, 24]} />
+        <meshStandardMaterial color="#38bdf8" wireframe={wireframe} roughness={0.35} />
+      </mesh>
+      <mesh position={[0.82, -0.47, 0]} rotation={[0, 0, 0.34]}>
+        <cylinderGeometry args={[0.11, 0.13, 1.45, 24]} />
+        <meshStandardMaterial color="#2dd4bf" wireframe={wireframe} roughness={0.35} />
+      </mesh>
+
+      {[
+        [-0.62, -0.32, 0],
+        [0.62, -0.32, 0],
+        [-0.3, 1.15, 0],
+        [0.3, 1.15, 0],
+      ].map(([x, y, z]) => (
+        <mesh key={`${x}-${y}-${z}`} position={[x, y, z]}>
+          <sphereGeometry args={[0.18, 18, 14]} />
+          <meshStandardMaterial color="#f59e0b" roughness={0.3} metalness={0.25} />
+        </mesh>
+      ))}
+
+      <mesh position={[0, 1.12, 0]} rotation={[Math.PI / 2, 0, 0]}>
+        <torusGeometry args={[0.82, 0.015, 8, 96]} />
+        <meshStandardMaterial color="#f97316" emissive="#7c2d12" emissiveIntensity={0.2} />
+      </mesh>
+      <mesh position={[0, 2.03, 0]} rotation={[Math.PI / 2, 0, 0]}>
+        <torusGeometry args={[0.54, 0.012, 8, 96]} />
+        <meshStandardMaterial color="#f59e0b" emissive="#78350f" emissiveIntensity={0.22} />
       </mesh>
 
       {showAxes ? (
@@ -123,30 +162,33 @@ export function ModelViewer3D({ lowPowerMode = false }: ModelViewer3DProps) {
   );
 
   return (
-    <div className="overflow-hidden rounded-2xl border border-white/10 bg-slate-900/90" ref={containerRef}>
+    <div className="overflow-hidden rounded-lg border border-white/10 bg-slate-900/90" ref={containerRef}>
       <div className="flex flex-wrap items-center gap-2 border-b border-white/10 px-4 py-3">
         <button
           type="button"
           onClick={() => setWireframe((prev) => !prev)}
-          className="inline-flex min-h-[44px] items-center rounded-full border border-white/20 px-4 py-2 text-xs text-slate-200 transition hover:border-cyan-300/40 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-300/80"
+          className="inline-flex min-h-[44px] items-center gap-2 rounded-lg border border-white/20 px-4 py-2 text-xs text-slate-200 transition hover:border-amber-300/40 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber-300/80"
         >
+          <ScanLine size={14} aria-hidden />
           {wireframe ? "Surface Mode" : "Wireframe Mode"}
         </button>
         <button
           type="button"
           onClick={() => setShowAxes((prev) => !prev)}
-          className="inline-flex min-h-[44px] items-center rounded-full border border-white/20 px-4 py-2 text-xs text-slate-200 transition hover:border-cyan-300/40 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-300/80"
+          className="inline-flex min-h-[44px] items-center gap-2 rounded-lg border border-white/20 px-4 py-2 text-xs text-slate-200 transition hover:border-amber-300/40 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber-300/80"
         >
+          <Axis3D size={14} aria-hidden />
           {showAxes ? "Hide Axes" : "Show Axes"}
         </button>
-        <p className="ml-auto font-mono text-[11px] uppercase tracking-[0.12em] text-slate-400">
+        <p className="ml-auto inline-flex items-center gap-2 font-mono text-[11px] uppercase text-slate-400">
+          {animate ? <Rotate3D size={14} aria-hidden /> : <Pause size={14} aria-hidden />}
           {animate ? "animation active" : "paused for performance"}
         </p>
       </div>
 
-      <div className="h-[360px] w-full">
+      <div className="h-[420px] w-full">
         <Canvas
-          camera={{ position: [0, 0, 5], fov: 55 }}
+          camera={{ position: [0, 0.75, 5.6], fov: 48 }}
           frameloop={animate ? "always" : "demand"}
           dpr={lowPowerMode ? [1, 1] : [1, 1.25]}
           gl={{ powerPreference: lowPowerMode ? "low-power" : "high-performance" }}

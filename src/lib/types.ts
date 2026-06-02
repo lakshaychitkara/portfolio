@@ -53,6 +53,8 @@ export interface ProjectVisual {
   gradientFrom: string;
   gradientTo: string;
   caption: string;
+  src?: string;
+  alt?: string;
 }
 
 export interface ProjectCta {
@@ -76,6 +78,7 @@ export interface Project {
   projectImpact: ProjectEvidence[];
   architecture: string[];
   sections: ProjectSection[];
+  timeline?: ProjectSection[];
   featured: boolean;
   demoRoute?: string;
   cta?: ProjectCta;

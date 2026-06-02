@@ -8,19 +8,19 @@ const ragSchema = z.object({
 
 const retrievalSources = [
   {
-    source: "vLLM Latency Lab - Case Study",
+    source: "vLLM Latency Lab",
     snippet:
       "Prefix caching and standardized prompt templates stabilized high-concurrency latency.",
   },
   {
-    source: "RAG Benchmark Suite - Experiment Log",
+    source: "STORMS Document Assistant",
     snippet:
-      "Chunking and retrieval-depth experiments improved groundedness while reducing unsupported claims.",
+      "FastAPI summarization, context compression, multilingual support, and CPU audio fixes shaped service reliability.",
   },
   {
-    source: "FastAPI Serving Notes",
+    source: "Piper Evidence Automation",
     snippet:
-      "Typed contracts using Pydantic improved reliability across model-serving endpoints.",
+      "Headless C++/Python workflows captured repeatable repositioning evidence for paper-ready outputs.",
   },
 ];
 

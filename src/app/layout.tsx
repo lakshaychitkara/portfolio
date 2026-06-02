@@ -15,7 +15,7 @@ export const metadata: Metadata = {
     template: "%s | Lakshay Kumar",
   },
   description:
-    "Portfolio of Lakshay Kumar: advanced LLM systems, multimodal benchmarking, and C++/VTK simulation engineering with full-stack delivery depth.",
+    "Portfolio of Lakshay Kumar: evidence-backed LLM systems, multimodal/OCR benchmarking, and C++/VTK simulation engineering with full-stack delivery depth.",
   keywords: [
     "Lakshay Kumar",
     "AI engineer",
@@ -23,6 +23,7 @@ export const metadata: Metadata = {
     "vLLM",
     "RAG",
     "computer vision",
+    "OCR",
     "C++",
     "VTK",
     "FastAPI",
@@ -31,7 +32,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Lakshay Kumar | AI Systems Portfolio",
     description:
-      "Advanced-first engineering portfolio spanning LLM optimization, video retrieval benchmarking, and simulation-grade C++ workflows.",
+      "Advanced-first engineering portfolio spanning LLM optimization, multimodal/OCR benchmarking, and simulation-grade C++ workflows.",
     url: siteUrl,
     siteName: "Lakshay Kumar Portfolio",
     type: "website",
@@ -48,7 +49,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Lakshay Kumar | AI Systems Portfolio",
     description:
-      "From full-stack foundations to LLM, multimodal, and C++ simulation systems engineering.",
+      "From full-stack foundations to LLM, multimodal/OCR, and C++ simulation systems engineering.",
     images: ["/twitter-image"],
   },
 };
@@ -70,7 +71,7 @@ export default function RootLayout({
       <body className="min-h-full bg-slate-950 text-slate-100 antialiased">
         <a
           href="#main-content"
-          className="sr-only fixed left-4 top-4 z-[70] rounded-md bg-cyan-300 px-3 py-2 text-sm font-semibold text-slate-950 focus:not-sr-only focus:outline-none focus:ring-2 focus:ring-cyan-200"
+          className="sr-only fixed left-4 top-4 z-[70] rounded-md bg-amber-300 px-3 py-2 text-sm font-semibold text-slate-950 focus:not-sr-only focus:outline-none focus:ring-2 focus:ring-amber-200"
         >
           Skip to main content
         </a>

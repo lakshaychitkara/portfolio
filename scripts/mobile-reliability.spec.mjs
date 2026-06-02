@@ -122,15 +122,14 @@ test("core routes avoid runtime console/page errors", async ({ page }) => {
   }
 });
 
-test("core routes avoid horizontal overflow and keep interactive targets >=44px", async ({
-  page,
-}) => {
-  for (const viewport of mobileQaViewports) {
+for (const viewport of mobileQaViewports) {
+  test(`core routes avoid horizontal overflow and keep interactive targets >=44px: ${viewport.label}`, async ({
+    page,
+  }) => {
     await page.setViewportSize({ width: viewport.width, height: viewport.height });
 
     for (const route of mobileQaRoutes) {
-      await page.goto(route);
-      await page.waitForLoadState("networkidle");
+      await page.goto(route, { waitUntil: "domcontentloaded" });
 
       const diagnostics = await page.evaluate(() => {
         const doc = document.documentElement;
@@ -187,8 +186,8 @@ test("core routes avoid horizontal overflow and keep interactive targets >=44px"
         `interactive targets below 44px at ${formatRouteViewport(route, viewport.label)}`,
       ).toEqual([]);
     }
-  }
-});
+  });
+}
 
 test("about critical sections remain visible and non-transparent on mobile", async ({ page }) => {
   await page.goto("/");
