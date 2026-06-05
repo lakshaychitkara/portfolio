@@ -3,7 +3,7 @@ import type { Project } from "@/lib/types";
 
 export { projectCategories };
 
-export const projects: Project[] = [
+const projectCatalog: Project[] = [
   {
     slug: "piper-repositioning-stability",
     title: "Piper Whole-Body Repositioning Stability",
@@ -12,6 +12,8 @@ export const projects: Project[] = [
     year: "2026",
     domain: ["cpp3d"],
     priority: "flagship",
+    hiringRank: 4,
+    roleFitTags: ["C++ simulation", "Geometry diagnostics", "Research automation"],
     impactSummary:
       "Turned geometry-heavy repositioning failures into measurable mesh-quality wins and reusable engineering workflows.",
     proofBadges: ["C++ geometry", "Mesh diagnostics", "Research automation"],
@@ -83,6 +85,31 @@ export const projects: Project[] = [
         body: "Advanced whole-body UI, negative-element visualization, headless docs, and paper image/report generation.",
       },
     ],
+    evidenceTrail: [
+      {
+        date: "Mar 26, 2026",
+        milestone: "IDM negative-element correction",
+        result: "Reduced corrected-run negative solid elements to zero.",
+        source: "my_work.ods rows 124-127",
+      },
+      {
+        date: "Apr 22, 2026",
+        milestone: "GHBMC mesh-quality reduction",
+        result: "Aligned detection and scaling scripts to reduce negative elements from roughly 6000 to 2.",
+        source: "my_work.ods row 220",
+      },
+      {
+        date: "May 25, 2026",
+        milestone: "Headless FE-HBM documentation automation",
+        result: "Built C++/Python report, PNG, and JSON evidence automation for repositioning sweeps.",
+        source: "my_work.ods row 253",
+      },
+    ],
+    labDemo: {
+      kind: "piper",
+      label: "Inspect 3D Proxy",
+      href: "/lab#piper-proxy",
+    },
     featured: true,
   },
   {
@@ -93,6 +120,8 @@ export const projects: Project[] = [
     year: "2026",
     domain: ["cv", "llm"],
     priority: "flagship",
+    hiringRank: 2,
+    roleFitTags: ["Multimodal retrieval", "OCR benchmarks", "Vector search"],
     impactSummary:
       "Replaced model guesswork with measured recall, confidence, latency, OCR quality, and index trade-off evidence.",
     proofBadges: ["Scale benchmarks", "Model comparison", "Retrieval validation"],
@@ -168,8 +197,33 @@ export const projects: Project[] = [
         body: "Added Gemini Embedding 2, FAISS 600k index tests, OCR model comparisons, and InternVL2.5 color validation.",
       },
     ],
+    evidenceTrail: [
+      {
+        date: "Feb 16-19, 2026",
+        milestone: "Video-language model recall comparison",
+        result: "Benchmarked InternVideo2, LanguageBind, MobileCLIP, X-CLIP, and annotated CCTV data.",
+        source: "my_work.ods rows 104-107",
+      },
+      {
+        date: "Mar 11-12, 2026",
+        milestone: "FAISS index benchmark",
+        result: "Compared Flat, HNSW, and IVF build/query/recall behavior across 600k embeddings.",
+        source: "my_work.ods rows 111-112",
+      },
+      {
+        date: "Mar 16-23, 2026",
+        milestone: "Embedding and OCR evaluation",
+        result: "Compared Gemini Embedding 2 plus OCR options including PaddleOCR, Tesseract, DeepSeek, GLM, and PaddleOCR-VL.",
+        source: "my_work.ods rows 113-119",
+      },
+    ],
     featured: true,
     demoRoute: "/lab",
+    labDemo: {
+      kind: "cv",
+      label: "Open Benchmark Lab",
+      href: "/lab#cv-benchmarks",
+    },
     cta: {
       label: "Open Benchmark Lab",
       href: "/lab",
@@ -183,6 +237,8 @@ export const projects: Project[] = [
     year: "2025",
     domain: ["llm", "fullstack"],
     priority: "flagship",
+    hiringRank: 1,
+    roleFitTags: ["LLM serving", "vLLM", "RAG systems"],
     impactSummary:
       "Improved concurrency-heavy assistant behavior with lower latency variance and stronger evidence grounding.",
     proofBadges: ["Load-tested", "Latency-tuned", "Production patterns"],
@@ -241,8 +297,33 @@ export const projects: Project[] = [
         body: "Migrated to vLLM, enabled prefix caching, fixed latency/threading issues, and tested up to 50 users.",
       },
     ],
+    evidenceTrail: [
+      {
+        date: "Nov 13-17, 2025",
+        milestone: "Adapter, latency, and streaming stabilization",
+        result: "Fixed adapter stacking, EOS latency, server errors, and background/streaming synchronization issues.",
+        source: "my_work.ods rows 60-64",
+      },
+      {
+        date: "Nov 19, 2025",
+        milestone: "vLLM migration",
+        result: "Moved the assistant from transformer serving to vLLM and stabilized performance.",
+        source: "my_work.ods row 66",
+      },
+      {
+        date: "Nov 25-26, 2025",
+        milestone: "Prefix caching and load tests",
+        result: "Enabled prefix caching, tested up to 50 users, and observed >36 tok/s in 10-user tests.",
+        source: "my_work.ods rows 72-73",
+      },
+    ],
     featured: true,
     demoRoute: "/lab",
+    labDemo: {
+      kind: "rag",
+      label: "Try RAG Explorer",
+      href: "/lab#rag-performance",
+    },
     cta: {
       label: "Try RAG Explorer",
       href: "/lab",
@@ -256,6 +337,8 @@ export const projects: Project[] = [
     year: "2026",
     domain: ["llm", "fullstack"],
     priority: "flagship",
+    hiringRank: 3,
+    roleFitTags: ["FastAPI AI services", "Multilingual LLM", "Audio pipeline"],
     impactSummary:
       "Moved a document assistant from service prototype toward multilingual, context-aware, CPU-conscious product behavior.",
     proofBadges: ["FastAPI service", "Multilingual", "Audio pipeline"],
@@ -319,6 +402,31 @@ export const projects: Project[] = [
         body: "Built FastAPI summarization, expanded parsing, provisioned Qwen, added Indic2, fixed audio OOM, and added context summarization.",
       },
     ],
+    evidenceTrail: [
+      {
+        date: "May 4-5, 2026",
+        milestone: "FastAPI summarization service",
+        result: "Built summarization endpoints with PDF, JSON, and raw text parsing support.",
+        source: "my_work.ods rows 232-233",
+      },
+      {
+        date: "May 7, 2026",
+        milestone: "Multilingual and CPU audio expansion",
+        result: "Integrated Indic2 200M for five-language support and implemented CPU audio handling.",
+        source: "my_work.ods row 235",
+      },
+      {
+        date: "May 13-15, 2026",
+        milestone: "Chatbot context and hallucination fixes",
+        result: "Built Gemma/vLLM chatbot flow, switched models for quality, and added up to 40-turn context summarization.",
+        source: "my_work.ods rows 241-243",
+      },
+    ],
+    labDemo: {
+      kind: "rag",
+      label: "Open RAG Explorer",
+      href: "/lab#rag-performance",
+    },
     featured: true,
   },
   {
@@ -329,6 +437,8 @@ export const projects: Project[] = [
     year: "2025",
     domain: ["fullstack", "llm"],
     priority: "notable",
+    hiringRank: 6,
+    roleFitTags: ["Crawler pipelines", "SEO prompts", "Full-stack AI"],
     impactSummary:
       "Increased content relevance and controllability with SEO-aware retrieval and depth-controlled crawl behavior.",
     proofBadges: ["SEO-aware", "Crawler resilience", "Prompt iteration"],
@@ -379,6 +489,20 @@ export const projects: Project[] = [
         body: "The pipeline became more controllable and produced stronger draft quality for downstream review.",
       },
     ],
+    evidenceTrail: [
+      {
+        date: "Nov 3-4, 2025",
+        milestone: "Question inputs and crawler depth",
+        result: "Added question-style inputs and web crawling with depth control up to 20 levels.",
+        source: "my_work.ods rows 50-51",
+      },
+      {
+        date: "Nov 5-7, 2025",
+        milestone: "Scraping fixes and SEO keyword generation",
+        result: "Fixed scraping issues, explored Figma API content behavior, and added SEO keyword generation.",
+        source: "my_work.ods rows 52-54",
+      },
+    ],
     featured: false,
   },
   {
@@ -389,6 +513,8 @@ export const projects: Project[] = [
     year: "2026",
     domain: ["fullstack", "llm"],
     priority: "notable",
+    hiringRank: 5,
+    roleFitTags: ["Product PoC", "API integrations", "Signal dashboards"],
     impactSummary:
       "Delivered a demo-ready cross-platform listening workflow with iterative UI and ingestion improvements.",
     proofBadges: ["PoC delivery", "API integrations", "Feedback loop"],
@@ -447,9 +573,27 @@ export const projects: Project[] = [
         body: "Completed API extraction, UI improvements, cleanup, rerun validation, and latency sharing.",
       },
     ],
+    evidenceTrail: [
+      {
+        date: "Mar 18, 2026",
+        milestone: "Social listening PoC development",
+        result: "Built the initial social listening app proof-of-concept while validating multimodal extraction choices.",
+        source: "my_work.ods row 116",
+      },
+      {
+        date: "Mar 19, 2026",
+        milestone: "Instagram and YouTube ingestion",
+        result: "Integrated platform extraction, improved UI after feedback, cleaned the branch, and pushed final delivery.",
+        source: "my_work.ods row 117",
+      },
+    ],
     featured: false,
   },
 ];
+
+export const projects: Project[] = [...projectCatalog].sort(
+  (a, b) => a.hiringRank - b.hiringRank || Number(b.year) - Number(a.year),
+);
 
 export function getProjectBySlug(slug: string): Project | undefined {
   return projects.find((project) => project.slug === slug);

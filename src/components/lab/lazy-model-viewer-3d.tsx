@@ -85,6 +85,13 @@ export function LazyModelViewer3D() {
             }}
           />
           <div className="absolute inset-0 bg-[linear-gradient(rgba(148,163,184,0.14)_1px,transparent_1px),linear-gradient(90deg,rgba(148,163,184,0.14)_1px,transparent_1px)] bg-[size:24px_24px]" />
+          <div className="absolute left-6 top-6 h-24 w-24 rounded-full border border-teal-200/35 bg-teal-300/10" />
+          <div className="absolute left-20 top-12 h-20 w-36 -rotate-12 rounded-full border border-amber-200/35 bg-amber-300/10" />
+          <div className="absolute right-6 top-5 grid gap-2 text-right font-mono text-[11px] uppercase text-slate-200">
+            <span className="rounded border border-white/10 bg-slate-950/60 px-2 py-1">70deg stable</span>
+            <span className="rounded border border-white/10 bg-slate-950/60 px-2 py-1">~6000 to 2</span>
+            <span className="rounded border border-white/10 bg-slate-950/60 px-2 py-1">Headless docs</span>
+          </div>
           <div className="absolute inset-x-0 bottom-0 bg-slate-950/70 px-3 py-2 text-[11px] uppercase text-slate-200">
             Simulation proxy preview (static until enabled)
           </div>

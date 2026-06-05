@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { ArrowRight, BriefcaseBusiness, Gauge, NotebookTabs } from "lucide-react";
+import { HeroProofStrip } from "@/components/about/hero-proof-strip";
 import { AboutProjectPreviewCard } from "@/components/about/about-project-preview-card";
 import { ButtonLink } from "@/components/ui/button-link";
 import { DomainBadge } from "@/components/ui/domain-badge";
@@ -53,7 +54,7 @@ export default function HomePage() {
     .map((key) => ctaCatalog[key])
     .slice(0, 3);
 
-  const heroHighlights = ["ev-01", "ev-02", "ev-04"]
+  const heroHighlights = ["ev-03", "ev-04", "ev-06", "ev-02", "ev-01", "ev-08"]
     .map((id) => evidenceMetrics.find((metric) => metric.id === id))
     .filter((metric): metric is (typeof evidenceMetrics)[number] => Boolean(metric))
     .slice(0, aboutDisplayConfig.limits.heroHighlights);
@@ -262,9 +263,12 @@ export default function HomePage() {
             <p className="font-mono text-xs uppercase text-amber-200">
               AI Systems Portfolio
             </p>
-            <h1 className="mt-4 text-4xl font-semibold leading-tight text-slate-50 md:text-6xl">
-              Evidence-backed AI engineering across models, systems, and simulation.
+            <h1 className="mt-4 text-5xl font-semibold leading-tight text-slate-50 md:text-7xl">
+              {profile.name}
             </h1>
+            <p className="mt-4 max-w-2xl text-2xl font-semibold leading-tight text-amber-100 md:text-4xl">
+              Evidence-backed AI engineering across models, systems, and simulation.
+            </p>
             <p className="mt-5 max-w-2xl text-base leading-relaxed text-slate-200 md:text-lg">
               {profile.headline}
             </p>
@@ -290,9 +294,7 @@ export default function HomePage() {
           </div>
 
           <div className="grid content-end gap-3">
-            {heroHighlights.map((item) => (
-              <EvidenceCard key={item.label} metric={item} compact />
-            ))}
+            <HeroProofStrip metrics={heroHighlights} />
           </div>
         </div>
       </section>

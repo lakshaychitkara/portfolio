@@ -27,7 +27,9 @@ function projectSearchText(project: Project) {
     project.challenge,
     project.stack.join(" "),
     project.proofBadges.join(" "),
+    project.roleFitTags.join(" "),
     project.projectImpact.map((metric) => `${metric.label} ${metric.value} ${metric.context}`).join(" "),
+    project.evidenceTrail.map((item) => `${item.date} ${item.milestone} ${item.result} ${item.source}`).join(" "),
   ]
     .join(" ")
     .toLowerCase();
@@ -54,6 +56,7 @@ export function ProjectsExplorer({ projects }: ProjectsExplorerProps) {
         return b.readTimeMinutes - a.readTimeMinutes || a.title.localeCompare(b.title);
       }
       return (
+        a.hiringRank - b.hiringRank ||
         (priorityOrder.get(a.priority) ?? 9) - (priorityOrder.get(b.priority) ?? 9) ||
         Number(b.year) - Number(a.year) ||
         a.title.localeCompare(b.title)
@@ -71,7 +74,7 @@ export function ProjectsExplorer({ projects }: ProjectsExplorerProps) {
             value={query}
             onChange={(event) => setQuery(event.target.value)}
             className="min-h-[44px] w-full rounded-lg border border-white/15 bg-slate-950/70 py-2 pl-10 pr-3 text-sm text-slate-100 outline-none transition placeholder:text-slate-500 focus:border-amber-300/60"
-            placeholder="Search by system, metric, stack, or outcome"
+            placeholder="Search metric, stack, or outcome"
           />
         </label>
 

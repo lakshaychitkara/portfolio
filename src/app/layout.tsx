@@ -2,11 +2,42 @@ import type { Metadata, Viewport } from "next";
 import { SiteFooter } from "@/components/layout/site-footer";
 import { SiteHeader } from "@/components/layout/site-header";
 import { SiteShell } from "@/components/layout/site-shell";
+import { profile } from "@/lib/content/profile";
 import { getMetadataBase, getSiteUrl } from "@/lib/seo";
 import "./globals.css";
 
 const siteUrl = getSiteUrl();
 const metadataBase = getMetadataBase();
+const structuredData = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Person",
+      "@id": `${siteUrl}/#person`,
+      name: profile.name,
+      jobTitle: "AI/ML Engineer",
+      email: profile.email,
+      url: siteUrl,
+      sameAs: [profile.github, profile.linkedin],
+      knowsAbout: ["LLM systems", "RAG", "vLLM", "Computer vision", "OCR", "C++ simulation", "FastAPI"],
+    },
+    {
+      "@type": "WebSite",
+      "@id": `${siteUrl}/#website`,
+      name: "Lakshay Kumar AI Systems Portfolio",
+      url: siteUrl,
+      author: { "@id": `${siteUrl}/#person` },
+    },
+    {
+      "@type": "ProfilePage",
+      "@id": `${siteUrl}/#profile`,
+      url: siteUrl,
+      about: { "@id": `${siteUrl}/#person` },
+      name: "Lakshay Kumar Portfolio",
+      description: profile.headline,
+    },
+  ],
+};
 
 export const metadata: Metadata = {
   metadataBase,
@@ -69,6 +100,10 @@ export default function RootLayout({
   return (
     <html lang="en" className="h-full">
       <body className="min-h-full bg-slate-950 text-slate-100 antialiased">
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
+        />
         <a
           href="#main-content"
           className="sr-only fixed left-4 top-4 z-[70] rounded-md bg-amber-300 px-3 py-2 text-sm font-semibold text-slate-950 focus:not-sr-only focus:outline-none focus:ring-2 focus:ring-amber-200"

@@ -2,11 +2,11 @@
 
 import { useMemo, useState } from "react";
 import type { KeyboardEvent } from "react";
-import type { CareerPhase } from "@/lib/types";
+import type { InternshipMilestone } from "@/lib/content/internship-evidence";
 import { cn } from "@/lib/utils";
 
 interface JourneyTimelineProps {
-  entries: CareerPhase[];
+  entries: InternshipMilestone[];
 }
 
 export function JourneyTimeline({ entries }: JourneyTimelineProps) {
@@ -81,7 +81,7 @@ export function JourneyTimeline({ entries }: JourneyTimelineProps) {
         >
           {entries.map((entry) => (
             <option key={entry.id} value={entry.id}>
-              {entry.phase} - {entry.period}
+              {entry.title} - {entry.period}
             </option>
           ))}
         </select>
@@ -111,11 +111,10 @@ export function JourneyTimeline({ entries }: JourneyTimelineProps) {
                 )}
               >
                 <p className="font-mono text-xs uppercase text-amber-200">
-                  {entry.phase}
+                  {entry.period}
                 </p>
-                <p className="mt-1 text-sm text-slate-400">{entry.period}</p>
                 <p className="mt-1 text-base font-semibold text-slate-100">{entry.title}</p>
-                <p className="mt-1 text-sm text-slate-300">{entry.focus}</p>
+                <p className="mt-1 text-sm text-slate-300">{entry.summary}</p>
               </button>
             );
           })}
@@ -138,19 +137,22 @@ export function JourneyTimeline({ entries }: JourneyTimelineProps) {
 
             <div className="mt-5 card-surface-muted p-4">
               <p className="font-mono text-xs uppercase text-slate-400">
-                Major Outcomes
+                Evidence from my_work.ods
               </p>
               <ul className="mt-2 space-y-2 text-sm text-slate-200">
-                {selectedEntry.outcomes.map((outcome) => (
+                {selectedEntry.evidence.map((outcome) => (
                   <li key={outcome} className="card-surface px-3 py-2">
                     {outcome}
                   </li>
                 ))}
               </ul>
+              <p className="mt-3 font-mono text-[11px] uppercase text-slate-500">
+                {selectedEntry.sourceRows}
+              </p>
             </div>
 
             <div className="mt-4 grid gap-3 md:grid-cols-3">
-              {selectedEntry.projectImpact.map((metric) => (
+              {selectedEntry.metrics.map((metric) => (
                 <div
                   key={`${selectedEntry.id}-${metric.label}`}
                   className="card-surface-muted p-3"

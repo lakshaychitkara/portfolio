@@ -60,17 +60,19 @@ export default function LabPage() {
       </header>
 
       <SectionBlock
+        id="piper-proxy"
         eyebrow="3D Demo"
         title="Biomechanics Repositioning Proxy"
-        description="A lightweight articulated mesh proxy for the Piper repositioning work. The 3D renderer is opt-in to keep initial load fast."
+        description="A lightweight, evidence-labeled proxy for Piper repositioning work: joint angles, negative-element overlays, and before/after mesh-quality signals."
       >
         <LazyModelViewer3D />
       </SectionBlock>
 
       <SectionBlock
+        id="rag-performance"
         eyebrow="LLM Demo"
         title="RAG + Performance Explorer"
-        description="Compare baseline versus optimized serving behavior across retrieval traces, latency, throughput, and groundedness."
+        description="Compare the vLLM/prefix-cached path against a baseline retrieval path with deterministic, portfolio-backed metrics."
       >
         <DeferredSection
           fallback={
@@ -87,9 +89,10 @@ export default function LabPage() {
       </SectionBlock>
 
       <SectionBlock
+        id="cv-benchmarks"
         eyebrow="Vision Demo"
         title="Multimodal Benchmark Explorer"
-        description="Compare caption quality and recall/precision signals across classical and multimodal model families."
+        description="Compare model families, datasets, recall/precision, and OCR/retrieval evidence from the internship benchmark work."
       >
         <DeferredSection
           fallback={

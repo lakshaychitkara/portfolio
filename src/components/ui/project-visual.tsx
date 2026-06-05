@@ -1,9 +1,11 @@
 import Image from "next/image";
 import type { ProjectVisual } from "@/lib/types";
+import { cn } from "@/lib/utils";
 
 interface ProjectVisualProps {
   visual: ProjectVisual;
   compact?: boolean;
+  className?: string;
 }
 
 type VisualMotif = "graph" | "mesh" | "matrix" | "signal";
@@ -22,14 +24,16 @@ function getMotif(label: string): VisualMotif {
   return "signal";
 }
 
-export function ProjectVisual({ visual, compact = false }: ProjectVisualProps) {
+export function ProjectVisual({ visual, compact = false, className }: ProjectVisualProps) {
   const motif = getMotif(visual.label);
 
   return (
     <figure
-      className={`project-visual relative overflow-hidden rounded-lg border border-white/10 ${
-        compact ? "h-36" : "h-56 md:h-72"
-      }`}
+      className={cn(
+        "project-visual relative overflow-hidden rounded-lg border border-white/10",
+        compact ? "h-36" : "h-56 md:h-72",
+        className,
+      )}
       aria-label={visual.caption}
     >
       {visual.src ? (

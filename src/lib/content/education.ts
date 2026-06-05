@@ -5,7 +5,7 @@ export const education: EducationItem[] = [
     id: "edu-01",
     institution: "Chitkara University",
     credential: "B.E. in Computer Science",
-    score: "CGPA 8.42",
+    score: "CGPA 8.87",
     period: "Oct 2022 - Jun 2026",
     location: "Patiala, Punjab",
   },

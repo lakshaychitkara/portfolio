@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { JourneyTimeline } from "@/components/journey/journey-timeline";
 import { SectionBlock } from "@/components/ui/section-block";
-import { careerPhases } from "@/lib/content";
+import { internshipEvidenceSummary, internshipMilestones } from "@/lib/content";
 import { canonicalFor } from "@/lib/seo";
 
 export const metadata: Metadata = {
@@ -19,10 +19,10 @@ export default function JourneyPage() {
       <h1 className="sr-only">Journey</h1>
       <SectionBlock
         eyebrow="Trajectory"
-        title="Advanced-First Growth Timeline (Milestone Digest)"
-        description="Curated phases from Sep 2025 to Jun 2026 showing outcomes, technical focus, and measurable impact."
+        title="CreateBytes Internship Evidence Timeline"
+        description={`${internshipEvidenceSummary.filledEntries} filled work entries from ${internshipEvidenceSummary.period}, grouped into hiring-relevant AI/ML milestones.`}
       >
-        <JourneyTimeline entries={careerPhases} />
+        <JourneyTimeline entries={internshipMilestones} />
       </SectionBlock>
     </>
   );

@@ -1,8 +1,8 @@
 import { expect, test } from "playwright/test";
 
 test("about page critical sections stay visible", async ({ page }) => {
-  await page.goto("/");
-  await page.waitForLoadState("networkidle");
+  await page.goto("/", { waitUntil: "domcontentloaded" });
+  await page.waitForTimeout(750);
 
   const criticalSelectors = [
     '[data-about-critical="hero"]',
@@ -31,8 +31,8 @@ test("about page critical sections stay visible", async ({ page }) => {
 });
 
 test("about page shows recruiter-first cards without blank states", async ({ page }) => {
-  await page.goto("/");
-  await page.waitForLoadState("networkidle");
+  await page.goto("/", { waitUntil: "domcontentloaded" });
+  await page.waitForTimeout(750);
 
   const evidenceCards = page.locator('[data-about-card="evidence"]');
   const flagshipCards = page.locator('[data-about-card="flagship"]');

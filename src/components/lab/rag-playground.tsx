@@ -10,12 +10,40 @@ import type { RagResponse } from "@/lib/types";
 const defaultQuery =
   "How did you reduce latency without sacrificing output quality in your LLM pipelines?";
 
+const defaultResult: RagResponse = {
+  mode: "optimized",
+  answer:
+    "The optimized path pairs vLLM migration with prefix caching, a 5-turn memory window, structured prompts, and retrieval weighting. In the internship evidence log, that work reached 50-user load tests and >36 tok/s in 10-user parallel testing while improving follow-up handling.",
+  retrieval: [
+    {
+      source: "CreateBytes legal assistant log",
+      relevance: 0.94,
+      snippet: "vLLM migration, prefix caching, memory tuning, and 50-user load testing.",
+    },
+    {
+      source: "RAG / FastAPI service work",
+      relevance: 0.86,
+      snippet: "Structured outputs, parser discipline, and service-level timeout/error handling.",
+    },
+    {
+      source: "STORMS assistant work",
+      relevance: 0.8,
+      snippet: "Context summarization and CPU-conscious document assistant reliability work.",
+    },
+  ],
+  metrics: {
+    latencyMs: 422,
+    tokensPerSecond: 86,
+    groundedness: 0.91,
+  },
+};
+
 export function RagPlayground() {
   const [query, setQuery] = useState(defaultQuery);
   const [mode, setMode] = useState<"baseline" | "optimized">("optimized");
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
-  const [result, setResult] = useState<RagResponse | null>(null);
+  const [result, setResult] = useState<RagResponse | null>(defaultResult);
 
   const modeHint = useMemo(
     () =>
@@ -62,6 +90,9 @@ export function RagPlayground() {
   return (
     <div className="rounded-lg border border-white/10 bg-slate-900/80 p-5">
       <form className="space-y-3" onSubmit={handleSubmit}>
+        <p className="font-mono text-xs uppercase text-amber-200">
+          Evidence-backed deterministic demo
+        </p>
         <label className="block space-y-2">
           <span className="text-sm font-medium text-slate-200">Ask the system design assistant</span>
           <textarea

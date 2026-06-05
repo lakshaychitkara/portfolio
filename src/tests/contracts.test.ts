@@ -18,9 +18,16 @@ test("POST /api/contact returns standardized success payload", async () => {
   );
 
   assert.equal(response.status, 200);
-  const payload = (await response.json()) as { ok: boolean; message: string };
+  const payload = (await response.json()) as {
+    ok: boolean;
+    message: string;
+    delivered: boolean;
+    fallbackMailtoHref?: string;
+  };
   assert.equal(payload.ok, true);
   assert.equal(typeof payload.message, "string");
+  assert.equal(payload.delivered, false);
+  assert.ok(payload.fallbackMailtoHref?.startsWith("mailto:"));
 });
 
 test("POST /api/contact returns standardized validation errors", async () => {

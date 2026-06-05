@@ -2,16 +2,16 @@ import type { PrivacyConfig } from "@/lib/types";
 
 export const profile = {
   name: "Lakshay Kumar",
-  role: "AI/ML Engineer | LLM Systems | Computer Vision | C++/3D",
+  role: "AI/ML Engineer | LLM Systems | Multimodal AI | C++/3D",
   location: "Rohtak, Haryana, India",
   phone: "+91 6283842863",
   email: "lakshay536.be22@gmail.com",
   github: "https://github.com/lakshay536",
   linkedin: "https://www.linkedin.com/in/lakshay-chittosiya-a36008254/",
   headline:
-    "I build evidence-backed AI systems across LLM inference, multimodal retrieval, OCR, and simulation-heavy C++ pipelines while keeping full-stack delivery speed.",
+    "I build evidence-backed AI systems across LLM serving, multimodal retrieval, OCR, and simulation-heavy C++ pipelines while keeping full-stack delivery speed.",
   shortBio:
-    "I began with strong full-stack fundamentals and expanded into vLLM optimization, multimodal benchmark pipelines, STORMS document assistants, and biomechanical 3D repositioning engineering.",
+    "During my CreateBytes internship I moved from RAG and vLLM optimization into multimodal benchmark pipelines, STORMS document assistants, and biomechanical FE-HBM repositioning engineering.",
 };
 
 export const privacyFlags: PrivacyConfig = {

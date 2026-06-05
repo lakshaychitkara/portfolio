@@ -6,7 +6,7 @@ import { DomainBadge } from "@/components/ui/domain-badge";
 import { EvidenceCard } from "@/components/ui/evidence-card";
 import { ProjectVisual } from "@/components/ui/project-visual";
 import { getProjectBySlug, projects } from "@/lib/content";
-import { canonicalFor } from "@/lib/seo";
+import { canonicalFor, getSiteUrl } from "@/lib/seo";
 
 interface ProjectDetailPageProps {
   params: Promise<{ slug: string }>;
@@ -47,9 +47,27 @@ export default async function ProjectDetailPage({ params }: ProjectDetailPagePro
   if (!project) {
     notFound();
   }
+  const projectStructuredData = {
+    "@context": "https://schema.org",
+    "@type": "CreativeWork",
+    name: project.title,
+    description: project.tagline,
+    url: `${getSiteUrl()}/projects/${project.slug}`,
+    dateCreated: project.year,
+    keywords: [...project.roleFitTags, ...project.stack].join(", "),
+    creator: {
+      "@type": "Person",
+      name: "Lakshay Kumar",
+    },
+  };
+  const proofLabels = Array.from(new Set([...project.roleFitTags, ...project.proofBadges]));
 
   return (
     <article className="space-y-8">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(projectStructuredData) }}
+      />
       <header className="grid gap-6 lg:grid-cols-[0.95fr_1.05fr] lg:items-end">
         <div>
           <div className="mb-4 flex flex-wrap items-center gap-2">
@@ -76,6 +94,10 @@ export default async function ProjectDetailPage({ params }: ProjectDetailPagePro
             {project.cta ? (
               <ButtonLink href={project.cta.href} variant="primary" icon={<FlaskConical size={16} aria-hidden />}>
                 {project.cta.label}
+              </ButtonLink>
+            ) : project.labDemo ? (
+              <ButtonLink href={project.labDemo.href} variant="primary" icon={<FlaskConical size={16} aria-hidden />}>
+                {project.labDemo.label}
               </ButtonLink>
             ) : project.demoRoute ? (
               <ButtonLink href={project.demoRoute} variant="primary" icon={<FlaskConical size={16} aria-hidden />}>
@@ -121,7 +143,7 @@ export default async function ProjectDetailPage({ params }: ProjectDetailPagePro
 
           <p className="mt-6 font-mono text-xs uppercase text-amber-200">Proof Badges</p>
           <div className="mt-3 flex flex-wrap gap-2">
-            {project.proofBadges.map((badge) => (
+            {proofLabels.map((badge) => (
               <span key={`${project.slug}-proof-${badge}`} className="chip">
                 {badge}
               </span>
@@ -151,6 +173,34 @@ export default async function ProjectDetailPage({ params }: ProjectDetailPagePro
                 <p className="text-sm font-semibold text-slate-100">{item.heading}</p>
                 <p className="mt-1 text-sm leading-relaxed text-slate-300">{item.body}</p>
               </div>
+            ))}
+          </div>
+        </section>
+      ) : null}
+
+      {project.evidenceTrail.length ? (
+        <section className="card-surface p-5" aria-label="Evidence trail">
+          <div className="flex flex-wrap items-end justify-between gap-3">
+            <div>
+              <p className="font-mono text-xs uppercase text-amber-200">Evidence Trail</p>
+              <h2 className="mt-2 text-2xl font-semibold text-slate-100">
+                Internship-backed milestones
+              </h2>
+            </div>
+            {project.labDemo ? (
+              <ButtonLink href={project.labDemo.href} variant="secondary" icon={<FlaskConical size={16} aria-hidden />}>
+                {project.labDemo.label}
+              </ButtonLink>
+            ) : null}
+          </div>
+          <div className="mt-5 grid gap-3 lg:grid-cols-3">
+            {project.evidenceTrail.map((item) => (
+              <article key={`${item.date}-${item.milestone}`} className="border border-white/10 bg-slate-950/50 p-4">
+                <p className="font-mono text-[11px] uppercase text-teal-200">{item.date}</p>
+                <h3 className="mt-2 text-base font-semibold text-slate-100">{item.milestone}</h3>
+                <p className="mt-2 text-sm leading-relaxed text-slate-200">{item.result}</p>
+                <p className="mt-3 font-mono text-[11px] uppercase text-slate-500">{item.source}</p>
+              </article>
             ))}
           </div>
         </section>

@@ -1,9 +1,11 @@
 "use client";
 
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { useId, useRef } from "react";
 import { Menu } from "lucide-react";
 import type { NavItem } from "@/lib/types";
+import { cn } from "@/lib/utils";
 
 interface MobileMenuProps {
   items: NavItem[];
@@ -12,6 +14,7 @@ interface MobileMenuProps {
 export function MobileMenu({ items }: MobileMenuProps) {
   const detailsRef = useRef<HTMLDetailsElement>(null);
   const navId = useId();
+  const pathname = usePathname();
 
   function closeMenu() {
     const details = detailsRef.current;
@@ -41,7 +44,19 @@ export function MobileMenu({ items }: MobileMenuProps) {
           <Link
             key={item.href}
             href={item.href}
-            className="inline-flex min-h-[44px] items-center rounded-lg px-4 py-2 text-sm text-slate-300 transition hover:bg-white/5 hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber-300/80"
+            aria-current={
+              item.href === "/"
+                ? pathname === "/" ? "page" : undefined
+                : pathname === item.href || pathname.startsWith(`${item.href}/`) ? "page" : undefined
+            }
+            className={cn(
+              "inline-flex min-h-[44px] items-center rounded-lg px-4 py-2 text-sm transition focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber-300/80",
+              item.href === "/"
+                ? pathname === "/" ? "bg-amber-300/12 text-amber-100" : "text-slate-300 hover:bg-white/5 hover:text-white"
+                : pathname === item.href || pathname.startsWith(`${item.href}/`)
+                  ? "bg-amber-300/12 text-amber-100"
+                  : "text-slate-300 hover:bg-white/5 hover:text-white",
+            )}
             onClick={() => closeMenu()}
           >
             {item.label}

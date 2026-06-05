@@ -31,6 +31,19 @@ export interface ProjectEvidence {
   context: string;
 }
 
+export interface EvidenceTrailItem {
+  date: string;
+  milestone: string;
+  result: string;
+  source: string;
+}
+
+export interface LabDemoConfig {
+  kind: "rag" | "cv" | "piper";
+  label: string;
+  href: string;
+}
+
 export interface CareerPhase {
   id: string;
   phase: string;
@@ -69,6 +82,8 @@ export interface Project {
   year: string;
   domain: CapabilityDomain[];
   priority: "flagship" | "notable";
+  hiringRank: number;
+  roleFitTags: string[];
   impactSummary: string;
   proofBadges: string[];
   readTimeMinutes: number;
@@ -79,8 +94,10 @@ export interface Project {
   architecture: string[];
   sections: ProjectSection[];
   timeline?: ProjectSection[];
+  evidenceTrail: EvidenceTrailItem[];
   featured: boolean;
   demoRoute?: string;
+  labDemo?: LabDemoConfig;
   cta?: ProjectCta;
 }
 
@@ -175,6 +192,8 @@ export interface CvBenchmarkResponse {
     caption: string;
     recall: number;
     precision: number;
+    datasetLabel?: string;
+    source?: string;
   }>;
 }
 
@@ -195,6 +214,8 @@ export interface BenchmarkResponse {
 export interface ContactResponse {
   ok: boolean;
   message: string;
+  delivered: boolean;
+  fallbackMailtoHref?: string;
 }
 
 export interface ApiErrorResponse {

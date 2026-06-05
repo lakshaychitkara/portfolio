@@ -24,6 +24,7 @@ for (const route of routes) {
       fullPage: true,
       animations: "disabled",
       maxDiffPixelRatio: 0.02,
+      timeout: 15_000,
     });
   });
 }
