@@ -19,7 +19,8 @@
     "test:about": "npx --yes playwright@1.54.2 test --project=desktop --config playwright.config.mjs scripts/about-reliability.spec.mjs",
     "test:visual": "npx --yes playwright@1.54.2 test --project=desktop --config playwright.config.mjs scripts/visual-regression.spec.mjs",
     "test:mobile": "npx --yes playwright@1.54.2 test --project=mobile-iphone-13 --project=mobile-pixel-5 --project=tablet-ipad-mini --config playwright.config.mjs scripts/mobile-reliability.spec.mjs",
-    "test:lighthouse": "npx --yes @lhci/cli@0.14.0 autorun --config=./lighthouserc.json"
+    "test:lighthouse": "npx --yes @lhci/cli@0.14.0 autorun --config=./lighthouserc.json",
+    "resume:pdf": "node scripts/export-resume-pdf.mjs"
   },
   "dependencies": {
     "@react-three/drei": "^10.7.7",

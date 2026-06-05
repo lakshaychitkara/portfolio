@@ -1,4 +1,5 @@
 import { z } from "zod";
+import { profile } from "@/lib/content/profile";
 import { timedJson } from "@/lib/server/route-utils";
 
 const contactSchema = z.object({
@@ -6,6 +7,39 @@ const contactSchema = z.object({
   email: z.string().email(),
   message: z.string().min(12).max(3000),
 });
+
+function buildFallbackMailto(data: z.infer<typeof contactSchema>) {
+  const subject = encodeURIComponent(`Portfolio inquiry from ${data.name}`);
+  const body = encodeURIComponent(`${data.message}\n\nReply to: ${data.email}`);
+  return `mailto:${profile.email}?subject=${subject}&body=${body}`;
+}
+
+async function deliverToWebhook(data: z.infer<typeof contactSchema>) {
+  const webhookUrl = process.env.CONTACT_WEBHOOK_URL?.trim();
+  if (!webhookUrl) {
+    return false;
+  }
+
+  const controller = new AbortController();
+  const timeout = setTimeout(() => controller.abort(), 6000);
+
+  try {
+    const response = await fetch(webhookUrl, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        ...data,
+        source: "lakshay-portfolio",
+        receivedAt: new Date().toISOString(),
+      }),
+      signal: controller.signal,
+    });
+
+    return response.ok;
+  } finally {
+    clearTimeout(timeout);
+  }
+}
 
 export async function POST(request: Request) {
   const startedAt = performance.now();
@@ -30,19 +64,26 @@ export async function POST(request: Request) {
       );
     }
 
-    console.info(
-      "contact_message_received",
-      JSON.stringify({
-        nameLength: parsed.data.name.length,
-        messageLength: parsed.data.message.length,
-      }),
-    );
+    const delivered = await deliverToWebhook(parsed.data).catch((error) => {
+      console.error("contact_webhook_error", error);
+      return false;
+    });
+    const fallbackMailtoHref = buildFallbackMailto(parsed.data);
+
+    console.info("contact_message_processed", {
+      delivered,
+      nameLength: parsed.data.name.length,
+      messageLength: parsed.data.message.length,
+    });
 
     return timedJson(
       {
         ok: true,
-        message:
-          "Thanks for reaching out. This portfolio demo captured your message payload successfully.",
+        delivered,
+        fallbackMailtoHref: delivered ? undefined : fallbackMailtoHref,
+        message: delivered
+          ? "Thanks for reaching out. Your message was delivered successfully."
+          : "Thanks for reaching out. Direct delivery is not configured here, so please use the email fallback.",
       },
       { status: 200, startedAt, cacheControl: "no-store" },
     );

@@ -13,12 +13,37 @@ const clipOptions = [
   "clinical-posture-sequence.mp4",
 ];
 
+const initialResult: CvBenchmarkResponse = {
+  clip: clipOptions[0],
+  modelFamily: "multimodal",
+  captions: [
+    {
+      model: "InternVideo2 + LanguageBind",
+      caption:
+        "Captures temporal video semantics and improves retrieval coverage on CCTV-style clips.",
+      recall: 0.88,
+      precision: 0.86,
+      datasetLabel: "104 CCTV videos",
+      source: "Manual CCTV annotation and LanguageBind/InternVideo benchmark logs",
+    },
+    {
+      model: "Gemini Embedding 2 + OCR stack",
+      caption:
+        "Adds embedding comparison and document extraction signals for mixed video and scanned-PDF workflows.",
+      recall: 0.91,
+      precision: 0.84,
+      datasetLabel: "600k embeddings + OCR stacks",
+      source: "FAISS Flat/HNSW/IVF and OCR comparison logs",
+    },
+  ],
+};
+
 export function CvBenchmarkExplorer() {
   const [clip, setClip] = useState(clipOptions[0]);
   const [modelFamily, setModelFamily] = useState<"baseline" | "multimodal">(
     "multimodal",
   );
-  const [result, setResult] = useState<CvBenchmarkResponse | null>(null);
+  const [result, setResult] = useState<CvBenchmarkResponse | null>(initialResult);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
@@ -104,16 +129,38 @@ export function CvBenchmarkExplorer() {
       ) : null}
 
       {result ? (
-        <div className="mt-6 space-y-3">
+        <div className="mt-6 grid gap-3 lg:grid-cols-2">
           {result.captions.map((item) => (
             <div key={item.model} className="rounded-lg border border-white/10 bg-slate-950/65 p-4">
               <div className="flex flex-wrap items-center justify-between gap-2">
                 <p className="text-sm font-semibold text-slate-100">{item.model}</p>
                 <p className="font-mono text-xs uppercase text-slate-400">
-                  Recall {(item.recall * 100).toFixed(0)}% | Precision {(item.precision * 100).toFixed(0)}%
+                  {item.datasetLabel ?? result.clip}
                 </p>
               </div>
               <p className="mt-2 text-sm text-slate-200">{item.caption}</p>
+              <div className="mt-4 space-y-3">
+                {[
+                  { label: "Recall", value: item.recall },
+                  { label: "Precision", value: item.precision },
+                ].map((metric) => (
+                  <div key={`${item.model}-${metric.label}`} className="space-y-1">
+                    <div className="flex items-center justify-between font-mono text-[11px] uppercase text-slate-400">
+                      <span>{metric.label}</span>
+                      <span>{(metric.value * 100).toFixed(0)}%</span>
+                    </div>
+                    <div className="h-2 overflow-hidden rounded-full bg-slate-800">
+                      <div
+                        className="h-full rounded-full bg-amber-300"
+                        style={{ width: `${metric.value * 100}%` }}
+                      />
+                    </div>
+                  </div>
+                ))}
+              </div>
+              {item.source ? (
+                <p className="mt-4 font-mono text-[11px] uppercase text-teal-200">{item.source}</p>
+              ) : null}
             </div>
           ))}
         </div>

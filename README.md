@@ -82,6 +82,11 @@ Update your profile and project content in:
 Replace resume file:
 - `public/resume.pdf`
 
+Regenerate the structured resume PDF:
+```bash
+npm run resume:pdf
+```
+
 ## Docs
 - `docs/performance-budget-sheet.md`
 - `docs/ui-optimization-playbook.md`

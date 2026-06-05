@@ -59,7 +59,7 @@ export const recruiterSignals = [
 
 export const resumeHighlights = [
   "Reduced GHBMC negative elements from roughly 6000 to 2 and extended stable knee flexion to 70deg in Piper workflows.",
-  "Migrated chatbot architecture to vLLM and stabilized multi-user inference behavior with prefix caching.",
+  "Migrated chatbot architecture to vLLM, enabled prefix caching, and validated behavior up to 50 users with >36 tok/s observed in 10-user tests.",
   "Benchmarked retrieval, captioning, OCR, and embedding-index stacks across 1,000-pair, 104-video, and 600k-embedding datasets.",
-  "Built FastAPI document-assistant services with multilingual, context summarization, and CPU audio-processing improvements.",
+  "Built FastAPI document-assistant services with multilingual, context summarization, and CPU audio-processing OOM fixes.",
 ];

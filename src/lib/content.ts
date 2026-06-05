@@ -3,11 +3,20 @@ export { capabilities } from "@/lib/content/capabilities";
 export { navItems } from "@/lib/content/navigation";
 export { aboutDisplayConfig } from "@/lib/content/about";
 export { education, foundationProjects } from "@/lib/content/education";
+export { internshipEvidenceSummary, internshipMilestones } from "@/lib/content/internship-evidence";
 export { careerPhases } from "@/lib/content/journey";
 export { evidenceMetrics, recruiterSignals, resumeHighlights } from "@/lib/content/metrics";
 export { profile, privacyFlags, roleFocus } from "@/lib/content/profile";
 export { projectCategories } from "@/lib/content/project-filters";
 export { projects, getProjectBySlug } from "@/lib/content/projects";
+export {
+  resumeAchievements,
+  resumeEducation,
+  resumeExperience,
+  resumeProfile,
+  resumeProjects,
+  resumeSkills,
+} from "@/lib/content/resume";
 
 import { careerPhases, getTimelineCoverageMonths } from "@/lib/content/journey";
 import { evidenceMetrics } from "@/lib/content/metrics";

@@ -14,6 +14,8 @@ const captionsByFamily = {
         "Detects subject movement and tracks torso alignment trends with moderate context awareness.",
       recall: 0.72,
       precision: 0.77,
+      datasetLabel: "Baseline CV clips",
+      source: "OpenCV/YOLO learning and tracking experiments",
     },
     {
       model: "OpenCV Classical Pipeline",
@@ -21,6 +23,8 @@ const captionsByFamily = {
         "Captures frame-level motion boundaries and posture transitions, but misses intent-level semantics.",
       recall: 0.65,
       precision: 0.81,
+      datasetLabel: "Classical CV",
+      source: "Contour, threshold, gradient, and tracking practice",
     },
   ],
   multimodal: [
@@ -30,6 +34,8 @@ const captionsByFamily = {
         "Captures temporal video semantics and improves retrieval coverage on CCTV-style clips.",
       recall: 0.88,
       precision: 0.86,
+      datasetLabel: "104 CCTV videos",
+      source: "Manual CCTV annotation and model comparison",
     },
     {
       model: "Gemini Embedding 2 + OCR stack",
@@ -37,6 +43,8 @@ const captionsByFamily = {
         "Adds embedding comparison and document extraction signals for mixed video and scanned-PDF workflows.",
       recall: 0.91,
       precision: 0.84,
+      datasetLabel: "600k embeddings + scanned PDFs",
+      source: "FAISS and OCR benchmark logs",
     },
   ],
 } as const;

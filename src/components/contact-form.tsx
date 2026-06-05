@@ -91,6 +91,9 @@ export function ContactForm() {
       setStatus(payload.message ?? "Message received.");
       setForm(initialState);
       setFieldErrors({});
+      if (!payload.delivered && payload.fallbackMailtoHref) {
+        window.location.href = payload.fallbackMailtoHref;
+      }
     } catch (err) {
       const diagnostics = getApiTargetDiagnostics();
       const message = err instanceof Error ? err.message : "Unexpected error.";

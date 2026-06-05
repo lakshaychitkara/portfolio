@@ -1,12 +1,14 @@
 import type { Metadata } from "next";
+import { ResumeDocument } from "@/components/resume/resume-document";
 import { ResumePreview } from "@/components/resume-preview";
 import { ButtonLink } from "@/components/ui/button-link";
 import { SectionBlock } from "@/components/ui/section-block";
 import {
-  education,
   evidenceMetrics,
   profile,
-  resumeHighlights,
+  resumeEducation,
+  resumeExperience,
+  resumeProjects,
   roleFocus,
 } from "@/lib/content";
 import { canonicalFor } from "@/lib/seo";
@@ -33,25 +35,22 @@ export default function ResumePage() {
         <div className="grid gap-5 lg:grid-cols-[1fr_0.9fr]">
           <div className="card-surface space-y-4 p-6">
             <p className="font-mono text-xs uppercase text-amber-200">
-              Education
+              Current Internship
             </p>
             <div className="space-y-3">
-              {education.length ? (
-                education.map((item) => (
-                  <div key={item.id} className="card-surface-muted px-3 py-3">
-                    <p className="text-sm font-semibold text-slate-100">{item.institution}</p>
-                    <p className="text-sm text-slate-300">{item.credential}</p>
-                    <p className="text-xs text-amber-200">{item.score}</p>
-                    <p className="text-xs text-slate-400">
-                      {item.period} | {item.location}
-                    </p>
-                  </div>
-                ))
-              ) : (
-                <p className="card-surface-muted px-3 py-3 text-sm text-slate-300">
-                  Education records are currently unavailable.
-                </p>
-              )}
+              {resumeExperience.map((item) => (
+                <div key={`${item.company}-${item.role}`} className="card-surface-muted px-3 py-3">
+                  <p className="text-sm font-semibold text-slate-100">{item.role} | {item.company}</p>
+                  <p className="text-xs text-amber-200">{item.period}</p>
+                  <ul className="mt-3 grid gap-2 text-sm text-slate-300">
+                    {item.bullets.slice(0, 3).map((bullet) => (
+                      <li key={bullet} className="border-l border-teal-300/30 pl-3">
+                        {bullet}
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              ))}
             </div>
           </div>
 
@@ -77,6 +76,9 @@ export default function ResumePage() {
               <ButtonLink href="/resume.pdf" variant="primary">
                 Download Resume PDF
               </ButtonLink>
+              <ButtonLink href="/resume/print" variant="tertiary">
+                Print View
+              </ButtonLink>
               <ButtonLink href="/contact" variant="secondary">
                 Contact Me
               </ButtonLink>
@@ -93,13 +95,14 @@ export default function ResumePage() {
         <div className="mt-6 grid gap-5 lg:grid-cols-[1fr_1fr]">
           <div className="card-surface p-6">
             <p className="font-mono text-xs uppercase text-amber-200">
-              Technical Highlights
+              Resume Projects
             </p>
             <ul className="mt-3 space-y-2 text-sm text-slate-200">
-              {resumeHighlights.length ? (
-                resumeHighlights.map((item) => (
-                  <li key={item} className="card-surface-muted px-3 py-2">
-                    {item}
+              {resumeProjects.length ? (
+                resumeProjects.map((item) => (
+                  <li key={item.title} className="card-surface-muted px-3 py-2">
+                    <span className="block font-semibold text-slate-100">{item.title}</span>
+                    <span className="mt-1 block text-xs text-slate-400">{item.stack}</span>
                   </li>
                 ))
               ) : (
@@ -131,6 +134,29 @@ export default function ResumePage() {
                 </p>
               )}
             </div>
+          </div>
+        </div>
+
+        <div className="mt-6 grid gap-5 lg:grid-cols-[0.8fr_1.2fr]">
+          <div className="card-surface p-6">
+            <p className="font-mono text-xs uppercase text-amber-200">
+              Education
+            </p>
+            <div className="mt-3 space-y-3">
+              {resumeEducation.map((item) => (
+                <div key={item.institution} className="card-surface-muted px-3 py-3">
+                  <p className="text-sm font-semibold text-slate-100">{item.institution}</p>
+                  <p className="text-sm text-slate-300">{item.credential}</p>
+                  <p className="text-xs text-amber-200">{item.score}</p>
+                  <p className="text-xs text-slate-400">
+                    {item.period} | {item.location}
+                  </p>
+                </div>
+              ))}
+            </div>
+          </div>
+          <div className="overflow-hidden rounded-lg border border-white/10 bg-slate-950/45 p-3">
+            <ResumeDocument />
           </div>
         </div>
 

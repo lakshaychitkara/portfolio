@@ -188,6 +188,83 @@ a {
   transform: translateY(0);
 }
 
+.resume-document {
+  font-family: Arial, Helvetica, sans-serif;
+  line-height: 1.28;
+}
+
+.resume-document h1,
+.resume-document h2,
+.resume-document h3 {
+  font-family: Arial, Helvetica, sans-serif;
+  letter-spacing: 0;
+}
+
+.resume-section {
+  margin-top: 0.42rem;
+  break-inside: avoid;
+}
+
+.resume-section h2 {
+  border-bottom: 1px solid #334155;
+  padding-bottom: 0.06rem;
+  text-transform: uppercase;
+  font-size: 0.78rem;
+  font-weight: 800;
+  color: #0f172a;
+}
+
+.resume-section h3 {
+  font-size: 0.76rem;
+  font-weight: 800;
+  color: #0f172a;
+}
+
+.resume-section p,
+.resume-section li {
+  font-size: 0.66rem;
+  color: #1e293b;
+}
+
+.resume-section ul {
+  margin-top: 0.08rem;
+  margin-left: 1.05rem;
+  list-style: disc;
+}
+
+.resume-section li {
+  margin-top: 0.03rem;
+}
+
+.resume-entry {
+  margin-top: 0.16rem;
+  break-inside: avoid;
+}
+
+.resume-meta {
+  font-size: 0.62rem !important;
+  color: #475569 !important;
+}
+
+body:has(.resume-print-page) {
+  background: #ffffff;
+}
+
+body:has(.resume-print-page) > header,
+body:has(.resume-print-page) > footer {
+  display: none;
+}
+
+body:has(.resume-print-page) main {
+  min-height: auto;
+  background: #ffffff;
+}
+
+body:has(.resume-print-page) main > div {
+  max-width: none;
+  padding: 0;
+}
+
 @keyframes fade-up {
   from {
     opacity: 0;
@@ -220,5 +297,41 @@ a {
     animation: none !important;
     opacity: 1 !important;
     transform: none !important;
+  }
+}
+
+@media print {
+  @page {
+    size: letter;
+    margin: 0;
+  }
+
+  html,
+  body {
+    background: #ffffff !important;
+  }
+
+  body > header,
+  body > footer {
+    display: none !important;
+  }
+
+  main,
+  main > div {
+    display: block !important;
+    min-height: 0 !important;
+    max-width: none !important;
+    padding: 0 !important;
+    background: #ffffff !important;
+  }
+
+  .atlas-bg::before,
+  .atlas-bg::after {
+    display: none !important;
+  }
+
+  .resume-document {
+    box-shadow: none !important;
+    border-radius: 0 !important;
   }
 }

@@ -10,9 +10,11 @@ interface ProjectCardProps {
 }
 
 export function ProjectCard({ project }: ProjectCardProps) {
+  const badgeLabels = Array.from(new Set([...project.roleFitTags, ...project.proofBadges])).slice(0, 5);
+
   return (
-    <article className="card-surface motion-lift grid overflow-hidden transition hover:-translate-y-1 hover:border-amber-300/35 lg:grid-cols-[0.85fr_1.15fr]">
-      <ProjectVisual visual={project.visual} compact />
+    <article className="card-surface motion-lift grid overflow-hidden transition hover:-translate-y-1 hover:border-amber-300/35 lg:grid-cols-[0.78fr_1.22fr]">
+      <ProjectVisual visual={project.visual} compact className="lg:h-full lg:min-h-[23rem] lg:rounded-none lg:border-0" />
 
       <div className="flex flex-col p-5 md:p-6">
         <div className="flex flex-wrap items-center gap-2">
@@ -33,16 +35,21 @@ export function ProjectCard({ project }: ProjectCardProps) {
 
         <h3 className="mt-2 text-2xl font-semibold text-slate-100">{project.title}</h3>
         <p className="mt-2 text-sm leading-relaxed text-slate-300">{project.impactSummary}</p>
-        <p className="mt-2 text-sm leading-relaxed text-slate-400">{project.tagline}</p>
+        <p className="mt-2 text-sm leading-relaxed text-slate-400 md:max-w-3xl">{project.tagline}</p>
 
         <div className="mt-4 grid gap-2 sm:grid-cols-2">
-          {project.projectImpact.slice(0, 2).map((metric) => (
-            <EvidenceCard key={`${project.slug}-${metric.label}`} metric={metric} compact />
+          {project.projectImpact.slice(0, 2).map((metric, index) => (
+            <EvidenceCard
+              key={`${project.slug}-${metric.label}`}
+              metric={metric}
+              compact
+              className={index === 1 ? "hidden sm:block" : undefined}
+            />
           ))}
         </div>
 
         <div className="mt-4 flex flex-wrap gap-2">
-          {project.proofBadges.map((badge) => (
+          {badgeLabels.map((badge) => (
             <span key={`${project.slug}-${badge}`} className="chip">
               {badge}
             </span>
@@ -56,6 +63,10 @@ export function ProjectCard({ project }: ProjectCardProps) {
           {project.cta ? (
             <ButtonLink href={project.cta.href} variant="secondary" icon={<FlaskConical size={16} aria-hidden />}>
               {project.cta.label}
+            </ButtonLink>
+          ) : project.labDemo ? (
+            <ButtonLink href={project.labDemo.href} variant="secondary" icon={<FlaskConical size={16} aria-hidden />}>
+              {project.labDemo.label}
             </ButtonLink>
           ) : project.demoRoute ? (
             <ButtonLink href={project.demoRoute} variant="secondary" icon={<FlaskConical size={16} aria-hidden />}>

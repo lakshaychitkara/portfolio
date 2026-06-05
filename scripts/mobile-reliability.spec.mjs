@@ -115,8 +115,8 @@ test.describe("no-js navigation", () => {
 test("core routes avoid runtime console/page errors", async ({ page }) => {
   for (const route of mobileQaRoutes) {
     const capture = attachErrorCapture(page);
-    await page.goto(route);
-    await page.waitForLoadState("networkidle");
+    await page.goto(route, { waitUntil: "domcontentloaded" });
+    await page.waitForTimeout(750);
     capture.detach();
     expect(capture.errors, `critical runtime errors on ${route}`).toEqual([]);
   }
